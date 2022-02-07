@@ -100,13 +100,13 @@ GetCardPic:
 	jr z, .got_pic
 	ld hl, KrisCardPic
 .got_pic
-	ld de, vTiles2 tile $00
-	ld bc, $23 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
+	ld bc, $23 * LEN_2BPP_TILE
 	ld a, BANK(ChrisCardPic) ; aka BANK(KrisCardPic)
 	call FarCopyBytes
 	ld hl, TrainerCardGFX
-	ld de, vTiles2 tile $23
-	ld bc, 6 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $23
+	ld bc, 6 * LEN_2BPP_TILE
 	ld a, BANK(TrainerCardGFX)
 	call FarCopyBytes
 	ret
@@ -130,7 +130,7 @@ GetPlayerBackpic:
 GetChrisBackpic:
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	ld c, 7 * 7
 	predef DecompressGet2bpp
 	ret
@@ -209,7 +209,7 @@ INCBIN "gfx/player/kris.2bpp"
 GetKrisBackpic:
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret

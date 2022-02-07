@@ -79,7 +79,7 @@ LoadCelebiGFX:
 	lb bc, BANK(SpecialCelebiLeafGFX), 4
 	call Request2bpp
 	ld de, SpecialCelebiGFX
-	ld hl, vTiles0 tile SPECIALCELEBIEVENT_CELEBI
+	ld hl, vTiles0 + LEN_2BPP_TILE * SPECIALCELEBIEVENT_CELEBI
 	lb bc, BANK(SpecialCelebiGFX), 4 * 4
 	call Request2bpp
 	xor a

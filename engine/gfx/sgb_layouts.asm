@@ -204,13 +204,13 @@ SGBLayoutJumptable:
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], LOW(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], HIGH(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], LOW(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	inc hl
-	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], HIGH(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer
 	ld a, [hli]
@@ -231,13 +231,13 @@ SGBLayoutJumptable:
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], LOW(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], HIGH(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], LOW(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	inc hl
-	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], HIGH(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	ld a, [wCurPartySpecies]
 	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
@@ -264,13 +264,13 @@ SGBLayoutJumptable:
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], LOW(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
+	ld [hl], HIGH(palred 31 + (1 << 5) * 20 + (1 << 10) * 10)
 	inc hl
-	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], LOW(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	inc hl
-	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
+	ld [hl], HIGH(palred 26 + (1 << 5) * 10 + (1 << 10) * 6)
 	ld hl, wSGBPals
 	ld de, BlkPacket_AllPal0
 	ret
@@ -367,13 +367,13 @@ endr
 	jr z, .partymon
 	; Egg
 	ld hl, wSGBPals + 3
-	ld [hl], LOW(palred 7 + palgreen 7 + palblue 7)
+	ld [hl], LOW(palred 7 + (1 << 5) * 7 + (1 << 10) * 7)
 	inc hl
-	ld [hl], HIGH(palred 7 + palgreen 7 + palblue 7)
+	ld [hl], HIGH(palred 7 + (1 << 5) * 7 + (1 << 10) * 7)
 	inc hl
-	ld [hl], LOW(palred 2 + palgreen 3 + palblue 3)
+	ld [hl], LOW(palred 2 + (1 << 5) * 3 + (1 << 10) * 3)
 	inc hl
-	ld [hl], HIGH(palred 2 + palgreen 3 + palblue 3)
+	ld [hl], HIGH(palred 2 + (1 << 5) * 3 + (1 << 10) * 3)
 	jr .done
 
 .partymon

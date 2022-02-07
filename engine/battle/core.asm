@@ -5106,14 +5106,14 @@ BattleMenuPKMN_Loop:
 Battle_StatsScreen:
 	call DisableLCD
 
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, vTiles0
-	ld bc, $11 tiles
+	ld bc, $11 * LEN_2BPP_TILE
 	call CopyBytes
 
 	ld hl, vTiles2
-	ld de, vTiles0 tile $11
-	ld bc, $31 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $11
+	ld bc, $31 * LEN_2BPP_TILE
 	call CopyBytes
 
 	call EnableLCD
@@ -5128,13 +5128,13 @@ Battle_StatsScreen:
 	call DisableLCD
 
 	ld hl, vTiles0
-	ld de, vTiles2 tile $31
-	ld bc, $11 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
+	ld bc, $11 * LEN_2BPP_TILE
 	call CopyBytes
 
-	ld hl, vTiles0 tile $11
+	ld hl, vTiles0 + LEN_2BPP_TILE * $11
 	ld de, vTiles2
-	ld bc, $31 tiles
+	ld bc, $31 * LEN_2BPP_TILE
 	call CopyBytes
 
 	call EnableLCD
@@ -6862,15 +6862,15 @@ _LoadHPBar:
 
 LoadHPExpBarGFX: ; unreferenced
 	ld de, EnemyHPBarBorderGFX
-	ld hl, vTiles2 tile $6c
+	ld hl, vTiles2 + LEN_2BPP_TILE * $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
 	call Get1bpp
 	ld de, HPExpBarBorderGFX
-	ld hl, vTiles2 tile $73
+	ld hl, vTiles2 + LEN_2BPP_TILE * $73
 	lb bc, BANK(HPExpBarBorderGFX), 6
 	call Get1bpp
 	ld de, ExpBarGFX
-	ld hl, vTiles2 tile $55
+	ld hl, vTiles2 + LEN_2BPP_TILE * $55
 	lb bc, BANK(ExpBarGFX), 8
 	jp Get2bpp
 
@@ -7967,7 +7967,7 @@ DropPlayerSub:
 	ld [wCurPartySpecies], a
 	ld hl, wBattleMonDVs
 	predef GetUnownLetter
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	predef GetMonBackpic
 	pop af
 	ld [wCurPartySpecies], a
@@ -8105,7 +8105,7 @@ BackUpBGMap2:
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 	ld hl, wDecompressScratch
-	ld bc, $40 tiles ; vBGMap3 - vBGMap2
+	ld bc, $40 * LEN_2BPP_TILE ; vBGMap3 - vBGMap2
 	ld a, $2
 	call ByteFill
 	ldh a, [rVBK]
@@ -9005,7 +9005,7 @@ GetTrainerBackpic:
 	ld hl, ChrisBackpic
 
 .Decompress:
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	ld c, 7 * 7
 	predef DecompressGet2bpp
 	ret
@@ -9016,7 +9016,7 @@ CopyBackpic:
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
 	ld hl, vTiles0
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	ldh a, [hROMBank]
 	ld b, a
 	ld c, 7 * 7

@@ -745,7 +745,7 @@ Function17aba0:
 	ld a, $1
 	ldh [rVBK], a
 
-	ld hl, vTiles5 tile $00
+	ld hl, vTiles5 + LEN_2BPP_TILE * $00
 	ld de, DialpadGFX
 	lb bc, BANK(DialpadGFX), $80 ; includes first 4 tiles of DialpadCursorGFX
 	call Get2bpp
@@ -753,12 +753,12 @@ Function17aba0:
 	pop af
 	ldh [rVBK], a
 
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	ld de, DialpadCursorGFX
 	lb bc, BANK(DialpadCursorGFX), 5
 	call Get2bpp
 
-	ld hl, vTiles0 tile $05
+	ld hl, vTiles0 + LEN_2BPP_TILE * $05
 	ld de, MobileDialingGFX
 	lb bc, BANK(MobileDialingGFX), 4
 	call Get2bpp
@@ -772,22 +772,22 @@ Function17abcf:
 
 	ld hl, Palette_17ac55
 	ld de, wBGPals1
-	ld bc, 6 palettes
+	ld bc, 6 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, Palette_17ac95
 	ld de, wOBPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, Palette_17b4b5
-	ld de, wOBPals1 palette 1
-	ld bc, 2 palettes
+	ld de, wOBPals1 + PALETTE_SIZE * 1
+	ld bc, 2 * PALETTE_SIZE
 	call CopyBytes
 
-	ld hl, MapObjectPals palette 1
-	ld de, wOBPals1 palette 3
-	ld bc, 1 palettes
+	ld hl, MapObjectPals + PALETTE_SIZE * 1
+	ld de, wOBPals1 + PALETTE_SIZE * 3
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(MapObjectPals)
 	call FarCopyBytes
 

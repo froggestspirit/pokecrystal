@@ -1063,7 +1063,7 @@ PCMonInfo:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	call GetBaseData
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	predef GetMonFrontpic
 	xor a
 	ld [wBillsPC_MonHasMail], a
@@ -2190,18 +2190,18 @@ BillsPC_Jumptable:
 
 BillsPC_InitGFX:
 	call DisableLCD
-	ld hl, vTiles2 tile $00
-	ld bc, $31 tiles
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
+	ld bc, $31 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld hl, PCMailGFX
-	ld de, vTiles2 tile $5c
-	ld bc, 4 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $5c
+	ld bc, 4 * LEN_2BPP_TILE
 	call CopyBytes
 	ld hl, PCSelectLZ
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Decompress
 	ld a, 6
 	call SkipMusic

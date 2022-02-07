@@ -1197,7 +1197,7 @@ ScrollMapDown::
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld bc, BG_MAP_WIDTH tiles
+	ld bc, BG_MAP_WIDTH * LEN_2BPP_TILE
 	add hl, bc
 ; cap d at HIGH(vBGMap0)
 	ld a, h
@@ -1360,7 +1360,7 @@ LoadTilesetGFX::
 
 	ld hl, wDecompressScratch
 	ld de, vTiles2
-	ld bc, $60 tiles
+	ld bc, $60 * LEN_2BPP_TILE
 	call CopyBytes
 
 	ldh a, [rVBK]
@@ -1368,9 +1368,9 @@ LoadTilesetGFX::
 	ld a, BANK(vTiles5)
 	ldh [rVBK], a
 
-	ld hl, wDecompressScratch + $60 tiles
+	ld hl, wDecompressScratch + $60 * LEN_2BPP_TILE
 	ld de, vTiles5
-	ld bc, $60 tiles
+	ld bc, $60 * LEN_2BPP_TILE
 	call CopyBytes
 
 	pop af

@@ -54,12 +54,12 @@ Crystal_WipeAttrmap:
 MG_Mobile_Layout_LoadPals:
 	ld de, wBGPals1
 	ld hl, Palette_MysteryGiftMobile
-	ld bc, 5 palettes
+	ld bc, 5 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
-	ld de, wBGPals1 palette PAL_BG_TEXT
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
 	ld hl, Palette_TextBG7
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
@@ -114,8 +114,8 @@ INCLUDE "gfx/mystery_gift/mg_mobile.pal"
 
 LoadOW_BGPal7::
 	ld hl, Palette_TextBG7
-	ld de, wBGPals1 palette PAL_BG_TEXT
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
@@ -124,18 +124,18 @@ Palette_TextBG7:
 INCLUDE "gfx/font/bg_text.pal"
 
 Function49420::
-	ld hl, MansionPalette1 + 8 palettes
-	ld de, wBGPals1 palette PAL_BG_ROOF
-	ld bc, 1 palettes
+	ld hl, MansionPalette1 + 8 * PALETTE_SIZE
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_ROOF
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 
 _CrystalCGB_MobileLayout1:
 	call MG_Mobile_Layout_LoadPals
-	ld de, wBGPals1 palette PAL_BG_TEXT
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
 	ld hl, .TextPalette
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call Crystal_WipeAttrmap
@@ -194,7 +194,7 @@ INCLUDE "engine/tilesets/tileset_palettes.asm"
 _CrystalCGB_NameCard:
 	ld hl, .BGPalette
 	ld de, wBGPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
@@ -202,7 +202,7 @@ _CrystalCGB_NameCard:
 	farcall ApplyAttrmap
 	ld hl, .OBPalette
 	ld de, wOBPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
@@ -216,7 +216,7 @@ INCLUDE "gfx/mystery_gift/name_card_ob.pal"
 Function49742:
 	ld hl, .MobileBorderPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
@@ -278,8 +278,8 @@ _InitMG_Mobile_LinkTradePalMap:
 
 _LoadTradeRoomBGPals:
 	ld hl, TradeRoomPalette
-	ld de, wBGPals1 palette PAL_BG_GREEN
-	ld bc, 6 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_GREEN
+	ld bc, 6 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals

@@ -1225,7 +1225,7 @@ DrawPackGFX:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, vTiles2 tile $50
+	ld hl, vTiles2 + LEN_2BPP_TILE * $50
 	lb bc, BANK(PackGFX), 15
 	call Request2bpp
 	ret
@@ -1235,10 +1235,10 @@ DrawPackGFX:
 	ret
 
 PackGFXPointers:
-	dw PackGFX + (15 tiles) * 1 ; ITEM_POCKET
-	dw PackGFX + (15 tiles) * 3 ; BALL_POCKET
-	dw PackGFX + (15 tiles) * 0 ; KEY_ITEM_POCKET
-	dw PackGFX + (15 tiles) * 2 ; TM_HM_POCKET
+	dw PackGFX + (15 * LEN_2BPP_TILE) * 1 ; ITEM_POCKET
+	dw PackGFX + (15 * LEN_2BPP_TILE) * 3 ; BALL_POCKET
+	dw PackGFX + (15 * LEN_2BPP_TILE) * 0 ; KEY_ITEM_POCKET
+	dw PackGFX + (15 * LEN_2BPP_TILE) * 2 ; TM_HM_POCKET
 
 Pack_InterpretJoypad:
 	ld hl, wMenuJoypad
@@ -1331,7 +1331,7 @@ Pack_InitGFX:
 	call DisableLCD
 	ld hl, PackMenuGFX
 	ld de, vTiles2
-	ld bc, $60 tiles
+	ld bc, $60 * LEN_2BPP_TILE
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
 ; Background (blue if male, pink if female)

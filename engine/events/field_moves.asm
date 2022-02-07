@@ -24,11 +24,11 @@ BlindingFlash:
 ShakeHeadbuttTree:
 	farcall ClearSpriteAnims
 	ld de, CutGrassGFX
-	ld hl, vTiles0 tile FIELDMOVE_GRASS
+	ld hl, vTiles0 + LEN_2BPP_TILE * FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, HeadbuttTreeGFX
-	ld hl, vTiles0 tile FIELDMOVE_TREE
+	ld hl, vTiles0 + LEN_2BPP_TILE * FIELDMOVE_TREE
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Cut_Headbutt_GetPixelFacing
@@ -138,11 +138,11 @@ OWCutAnimation:
 .LoadCutGFX:
 	callfar ClearSpriteAnims ; pointless to farcall
 	ld de, CutGrassGFX
-	ld hl, vTiles0 tile FIELDMOVE_GRASS
+	ld hl, vTiles0 + LEN_2BPP_TILE * FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, CutTreeGFX
-	ld hl, vTiles0 tile FIELDMOVE_TREE
+	ld hl, vTiles0 + LEN_2BPP_TILE * FIELDMOVE_TREE
 	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
@@ -389,7 +389,7 @@ endr
 FlyFunction_InitGFX:
 	callfar ClearSpriteAnims
 	ld de, CutGrassGFX
-	ld hl, vTiles0 tile FIELDMOVE_GRASS
+	ld hl, vTiles0 + LEN_2BPP_TILE * FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld a, [wCurPartyMon]

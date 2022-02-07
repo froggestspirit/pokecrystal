@@ -140,13 +140,13 @@ Intro_LoadMagikarpPalettes: ; unreferenced
 ; CGB only
 	ld hl, .MagikarpBGPal
 	ld de, wBGPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 
 	ld hl, .MagikarpOBPal
 	ld de, wOBPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
@@ -253,7 +253,7 @@ LoadMonPaletteAsNthBGPal:
 LoadNthMiddleBGPal:
 	push hl
 	ld hl, wBGPals1
-	ld de, 1 palettes
+	ld de, 1 * PALETTE_SIZE
 .loop
 	and a
 	jr z, .got_addr
@@ -331,11 +331,11 @@ ApplyHPBarPals:
 	ret
 
 .Enemy:
-	ld de, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP color 1
+	ld de, wBGPals2 + PALETTE_SIZE * PAL_BATTLE_BG_ENEMY_HP + PAL_COLOR_SIZE * 1
 	jr .okay
 
 .Player:
-	ld de, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP color 1
+	ld de, wBGPals2 + PALETTE_SIZE * PAL_BATTLE_BG_PLAYER_HP + PAL_COLOR_SIZE * 1
 
 .okay
 	ld l, c
@@ -383,11 +383,11 @@ LoadStatsScreenPals:
 	ld a, BANK(wBGPals1)
 	ldh [rSVBK], a
 	ld a, [hli]
-	ld [wBGPals1 palette 0], a
-	ld [wBGPals1 palette 2], a
+	ld [wBGPals1 + PALETTE_SIZE * 0], a
+	ld [wBGPals1 + PALETTE_SIZE * 2], a
 	ld a, [hl]
-	ld [wBGPals1 palette 0 + 1], a
-	ld [wBGPals1 palette 2 + 1], a
+	ld [wBGPals1 + PALETTE_SIZE * 0 + 1], a
+	ld [wBGPals1 + PALETTE_SIZE * 2 + 1], a
 	pop af
 	ldh [rSVBK], a
 	call ApplyPals
@@ -428,7 +428,7 @@ LoadMailPalettes:
 
 .cgb
 	ld de, wBGPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
@@ -474,7 +474,7 @@ LoadHLPaletteIntoDE:
 	push af
 	ld a, BANK(wOBPals1)
 	ldh [rSVBK], a
-	ld c, 1 palettes
+	ld c, 1 * PALETTE_SIZE
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -544,7 +544,7 @@ ResetBGPals:
 	ldh [rSVBK], a
 
 	ld hl, wBGPals1
-	ld c, 1 palettes
+	ld c, 1 * PALETTE_SIZE
 .loop
 	ld a, $ff
 	ld [hli], a
@@ -578,7 +578,7 @@ WipeAttrmap:
 ApplyPals:
 	ld hl, wBGPals1
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	ld a, BANK(wGBCPalettes)
 	call FarCopyWRAM
 	ret
@@ -655,7 +655,7 @@ CGB_ApplyPartyMenuHPPals:
 InitPartyMenuOBPals:
 	ld hl, PartyMenuOBPals
 	ld de, wOBPals1
-	ld bc, 2 palettes
+	ld bc, 2 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
@@ -722,15 +722,15 @@ CGBCopyBattleObjectPals: ; unreferenced
 	ld hl, BattleObjectPals
 	ld a, (1 << rOBPI_AUTO_INCREMENT) | $10
 	ldh [rOBPI], a
-	ld c, 6 palettes
+	ld c, 6 * PALETTE_SIZE
 .loop
 	ld a, [hli]
 	ldh [rOBPD], a
 	dec c
 	jr nz, .loop
 	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette 2
-	ld bc, 2 palettes
+	ld de, wOBPals1 + PALETTE_SIZE * 2
+	ld bc, 2 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
@@ -752,7 +752,7 @@ CGBCopyTwoPredefObjectPals: ; unreferenced
 	ret
 
 .PushPalette:
-	ld c, 1 palettes
+	ld c, 1 * PALETTE_SIZE
 .loop
 	ld a, [hli]
 	ldh [rOBPD], a
@@ -875,7 +875,7 @@ InitCGBPals::
 	ld a, BANK(vTiles3)
 	ldh [rVBK], a
 	ld hl, vTiles3
-	ld bc, $200 tiles
+	ld bc, $200 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 	ld a, BANK(vTiles0)
@@ -1041,7 +1041,7 @@ SGBBorder_PushBGPals:
 	ldh [rBGP], a
 	ld hl, PredefPals
 	ld de, vTiles1
-	ld bc, $100 tiles
+	ld bc, $100 * LEN_2BPP_TILE
 	call CopyData
 	call DrawDefaultTiles
 	ld a, LCDC_DEFAULT
@@ -1075,7 +1075,7 @@ SGBBorder_MorePalPushing:
 	call CopyData
 	ld bc, $100
 	call ClearBytes
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyData
 	call DrawDefaultTiles
 	ld a, LCDC_DEFAULT
@@ -1094,9 +1094,9 @@ SGBBorder_YetMorePalPushing:
 	ld b, $80
 .loop
 	push bc
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyData
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call ClearBytes
 	pop bc
 	dec b
@@ -1239,7 +1239,7 @@ LoadMapPals:
 	ld e, l
 	ld d, h
 	pop hl
-	ld c, 1 palettes
+	ld c, 1 * PALETTE_SIZE
 .inner_loop
 	ld a, [de]
 	inc de
@@ -1256,11 +1256,11 @@ LoadMapPals:
 .got_pals
 	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	ld hl, MapObjectPals
 	call AddNTimes
 	ld de, wOBPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
@@ -1286,7 +1286,7 @@ rept 4
 	inc hl
 endr
 .morn_day
-	ld de, wBGPals1 palette PAL_BG_ROOF color 1
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_ROOF + PAL_COLOR_SIZE * 1
 	ld bc, 4
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM

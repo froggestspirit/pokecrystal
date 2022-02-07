@@ -143,7 +143,7 @@ MailGFXPointers:
 
 LoadSurfMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, SurfMailBorderGFX
 	ld c, 8 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
@@ -157,7 +157,7 @@ LoadSurfMailGFX:
 
 LoadLiteBlueMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, LiteBlueMailBorderGFX
 	ld c, 8 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
@@ -227,7 +227,7 @@ FinishLoadingSurfLiteBlueMailGFX:
 
 LoadEonMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, EonMailBorder1GFX
 	ld c, 1 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
@@ -246,7 +246,7 @@ LoadEonMailGFX:
 	ld de, MailEeveeGFX
 	ld c, 6 * LEN_1BPP_TILE
 	call LoadMailGFX_Color3
-	ld hl, vTiles2 tile $3d
+	ld hl, vTiles2 + LEN_2BPP_TILE * $3d
 	ld de, MailLargeCircleGFX
 	ld c, 4 * LEN_1BPP_TILE
 	call LoadMailGFX_Color1
@@ -276,7 +276,7 @@ LoadEonMailGFX:
 
 LoadLovelyMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, LovelyMailBorderGFX
 	ld c, 5 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
@@ -337,7 +337,7 @@ LovelyEonMail_PlaceIcons:
 
 LoadMorphMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld bc, 5 * LEN_1BPP_TILE
 	call MailGFX_GenerateMonochromeTilesColor2
 	ld de, MorphMailBorderCornerGFX + 3 * LEN_1BPP_TILE
@@ -412,12 +412,12 @@ LoadMorphMailGFX:
 
 LoadBlueSkyMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, EonMailBorder1GFX
 	ld c, 1 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
 	ld a, $ff
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call ByteFill
 	ld de, BlueSkyMailGrassGFX
 	ld c, 1 * LEN_1BPP_TILE
@@ -498,7 +498,7 @@ Mail_Place6TileRow:
 
 LoadFlowerMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, FlowerMailBorderGFX
 	ld c, 8 * LEN_1BPP_TILE
 	call LoadMailGFX_Color1
@@ -552,14 +552,14 @@ LoadFlowerMailGFX:
 
 LoadPortraitMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, PortraitMailBorderGFX
 	ld c, 5 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
 	ld de, PortraitMailUnderlineGFX
 	ld c, 1 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
-	ld hl, vTiles2 tile $3d
+	ld hl, vTiles2 + LEN_2BPP_TILE * $3d
 	ld de, PortraitMailLargePokeballGFX
 	ld c, 4 * LEN_1BPP_TILE
 	call LoadMailGFX_Color1
@@ -582,7 +582,7 @@ LoadPortraitMailGFX:
 
 LoadMusicMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, MusicMailBorderGFX
 	ld c, 4 * LEN_1BPP_TILE
 	call LoadMailGFX_Color2
@@ -593,7 +593,7 @@ LoadMusicMailGFX:
 	ld c, 6 * LEN_1BPP_TILE
 	call LoadMailGFX_Color3
 	xor a
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call ByteFill
 	ld de, MusicMailLargeNoteGFX
 	ld c, 3 * LEN_1BPP_TILE
@@ -624,7 +624,7 @@ LoadMusicMailGFX:
 
 LoadMirageMailGFX:
 	push bc
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld bc, 5 * LEN_1BPP_TILE
 	call MailGFX_GenerateMonochromeTilesColor2
 	ld de, BlueSkyMailGrassGFX

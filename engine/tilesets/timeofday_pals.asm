@@ -40,7 +40,7 @@ _TimeOfDayPals::
 	ld [wTimeOfDayPal], a
 
 ; save bg palette 7
-	ld hl, wBGPals1 palette PAL_BG_TEXT
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
 
 ; save wram bank
 	ldh a, [rSVBK]
@@ -168,7 +168,7 @@ FillWhiteBGColor:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, wBGPals1 + 1 palettes
+	ld hl, wBGPals1 + 1 * PALETTE_SIZE
 	ld c, 6
 .loop
 	ld a, e

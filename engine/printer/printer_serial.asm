@@ -95,9 +95,9 @@ Printer_StartTransmittingTilemap:
 	call Printer_CopyPacket
 	; prepare to send 40 tiles
 	call Printer_Convert2RowsTo2bpp
-	ld a, LOW(40 tiles)
+	ld a, LOW(40 * LEN_2BPP_TILE)
 	ld [wPrinterSendByteCounter], a
-	ld a, HIGH(40 tiles)
+	ld a, HIGH(40 * LEN_2BPP_TILE)
 	ld [wPrinterSendByteCounter + 1], a
 	; compute the checksum
 	call Printer_ComputeChecksum
@@ -401,7 +401,7 @@ Printer_Convert2RowsTo2bpp:
 	lb bc, BANK(Printer_Convert2RowsTo2bpp), 1
 	call Request2bpp
 	pop hl
-	ld de, 1 tiles
+	ld de, 1 * LEN_2BPP_TILE
 	add hl, de
 	pop de
 	pop bc

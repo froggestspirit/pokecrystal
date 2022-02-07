@@ -886,7 +886,7 @@ StatsScreen_PlaceFrontpic:
 	call IsAPokemon
 	ret c
 	call StatsScreen_LoadTextboxSpaceGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	predef GetAnimatedFrontpic
 	hlcoord 0, 0
 	ld d, $0
@@ -974,7 +974,7 @@ StatsScreen_LoadTextboxSpaceGFX:
 	ldh [rVBK], a
 	ld de, TextboxSpaceGFX
 	lb bc, BANK(TextboxSpaceGFX), 1
-	ld hl, vTiles2 tile " "
+	ld hl, vTiles2 + LEN_2BPP_TILE * " "
 	call Get2bpp
 	pop af
 	ldh [rVBK], a
@@ -1095,7 +1095,7 @@ StatsScreen_AnimateEgg:
 	ld a, $1
 	ld [wBoxAlignment], a
 	call StatsScreen_LoadTextboxSpaceGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	predef GetAnimatedFrontpic
 	pop de
 	hlcoord 0, 0

@@ -12,11 +12,11 @@ _MemoryGame:
 	call GetSGBLayout
 	callfar ClearSpriteAnims
 	ld hl, MemoryGameLZ
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Decompress
 	ld hl, MemoryGameGFX
-	ld de, vTiles0 tile $00
-	ld bc, 4 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
+	ld bc, 4 * LEN_2BPP_TILE
 	ld a, BANK(MemoryGameGFX)
 	call FarCopyBytes
 	ld a, SPRITE_ANIM_DICT_ARROW_CURSOR
@@ -536,7 +536,7 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	ld a, [hl]
 	and a
 	ret z
-	sub 1 tiles
+	sub 1 * LEN_2BPP_TILE
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -547,9 +547,9 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	cp (9 - 1) tiles
+	cp (9 - 1) * LEN_2BPP_TILE
 	ret z
-	add 1 tiles
+	add 1 * LEN_2BPP_TILE
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -562,7 +562,7 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	ld a, [hl]
 	and a
 	ret z
-	sub 1 tiles
+	sub 1 * LEN_2BPP_TILE
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -575,9 +575,9 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	cp (5 - 1) tiles
+	cp (5 - 1) * LEN_2BPP_TILE
 	ret z
-	add 1 tiles
+	add 1 * LEN_2BPP_TILE
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc

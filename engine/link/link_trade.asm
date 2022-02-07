@@ -130,8 +130,8 @@ _LoadTradeScreenBorderGFX:
 	ret
 
 LinkComms_LoadPleaseWaitTextboxBorderGFX:
-	ld de, LinkCommsBorderGFX + $30 tiles
-	ld hl, vTiles2 tile $76
+	ld de, LinkCommsBorderGFX + $30 * LEN_2BPP_TILE
+	ld hl, vTiles2 + LEN_2BPP_TILE * $76
 	lb bc, BANK(LinkCommsBorderGFX), 8
 	call Get2bpp
 	ret

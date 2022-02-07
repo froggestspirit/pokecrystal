@@ -518,14 +518,14 @@ EZChatCursorGFX:
 INCBIN "gfx/mobile/ez_chat_cursor.2bpp"
 
 Function8942b:
-	ld de, vTiles0 tile $02
+	ld de, vTiles0 + LEN_2BPP_TILE * $02
 	ld hl, CardLargeSpriteAndFolderGFX
-	ld bc, 8 tiles ; just the large card sprite
+	ld bc, 8 * LEN_2BPP_TILE ; just the large card sprite
 	ld a, BANK(CardLargeSpriteAndFolderGFX)
 	call FarCopyBytes
-	ld de, vTiles0 tile $0a
+	ld de, vTiles0 + LEN_2BPP_TILE * $0a
 	ld hl, CardSpriteGFX
-	ld bc, 4 tiles
+	ld bc, 4 * LEN_2BPP_TILE
 	ld a, BANK(CardSpriteGFX)
 	call FarCopyBytes
 	ret
@@ -545,8 +545,8 @@ Function89448:
 
 Function89455:
 	ld hl, CardLargeSpriteAndFolderGFX
-	ld de, vTiles2 tile $0c
-	ld bc, (8 + 65) tiles ; large card sprite + folder
+	ld de, vTiles2 + LEN_2BPP_TILE * $0c
+	ld bc, (8 + 65) * LEN_2BPP_TILE ; large card sprite + folder
 	ld a, BANK(CardLargeSpriteAndFolderGFX)
 	call FarCopyBytes
 	ret
@@ -554,12 +554,12 @@ Function89455:
 Function89464:
 	ld hl, MobileCardGFX
 	ld de, vTiles2
-	ld bc, $20 tiles
+	ld bc, $20 * LEN_2BPP_TILE
 	ld a, BANK(MobileCardGFX)
 	call FarCopyBytes
 	ld hl, MobileCard2GFX
-	ld de, vTiles2 tile $20
-	ld bc, $17 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $20
+	ld bc, $17 * LEN_2BPP_TILE
 	ld a, BANK(MobileCard2GFX)
 	call FarCopyBytes
 	ret
@@ -590,8 +590,8 @@ Function8949c:
 	ld a, 5
 	ldh [rSVBK], a
 	ld hl, Palette_894b3
-	ld de, wBGPals1 palette 7
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 7
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -638,11 +638,11 @@ Function894dc:
 	ld h, [hl]
 	ld l, a
 	ld de, wBGPals1
-	ld bc, 3 palettes
+	ld bc, 3 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, .Pals345
-	ld de, wBGPals1 + 3 palettes
-	ld bc, 3 palettes
+	ld de, wBGPals1 + 3 * PALETTE_SIZE
+	ld bc, 3 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
@@ -1156,7 +1156,7 @@ Function897af:
 	ld [wTrainerClass], a
 	xor a
 	ld [wCurPartySpecies], a
-	ld de, vTiles2 tile $37
+	ld de, vTiles2 + LEN_2BPP_TILE * $37
 	farcall GetTrainerPic
 	pop bc
 	ret
@@ -1201,8 +1201,8 @@ Function89807:
 	ld hl, KrisSilhouetteGFX
 .asm_89814
 	call DisableLCD
-	ld de, vTiles2 tile $37
-	ld bc, (5 * 7) tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $37
+	ld bc, (5 * 7) * LEN_2BPP_TILE
 	ld a, BANK(ChrisSilhouetteGFX) ; aka BANK(KrisSilhouetteGFX)
 	call FarCopyBytes
 	call EnableLCD
@@ -2049,15 +2049,15 @@ Function89d0d:
 .loop
 	push bc
 	ld hl, .Palette1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop bc
 	dec c
 	jr nz, .loop
 
 	ld hl, .Palette2
-	ld de, wBGPals1 + 2 palettes
-	ld bc, 1 palettes
+	ld de, wBGPals1 + 2 * PALETTE_SIZE
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
@@ -2272,8 +2272,8 @@ Function89e9a:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, Palette_89eb1
-	ld de, wBGPals1 palette 5
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 5
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -3232,16 +3232,16 @@ Function8a5b6:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, Palette_8a5e5
-	ld de, wBGPals1 + 4 palettes
-	ld bc, 3 palettes
+	ld de, wBGPals1 + 4 * PALETTE_SIZE
+	ld bc, 3 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, Palette_8a5fd
 	ld de, wOBPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, Palette_8a605
-	ld de, wOBPals1 + 1 palettes
-	ld bc, 1 palettes
+	ld de, wOBPals1 + 1 * PALETTE_SIZE
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -3282,7 +3282,7 @@ Function8a60d:
 	ldh [rSVBK], a
 	ld hl, Palette_8a624
 	ld de, wOBPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a

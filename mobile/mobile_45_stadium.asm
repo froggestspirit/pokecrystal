@@ -734,7 +734,7 @@ Function117c4a:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, wBGPals1
-	ld de, 1 palettes
+	ld de, 1 * PALETTE_SIZE
 	ld c, 8
 .loop
 	push hl

@@ -180,16 +180,16 @@ RunTradeAnimScript:
 	ld a, " "
 	call ByteFill
 	ld hl, TradeGameBoyLZ
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	call Decompress
 	ld hl, TradeArrowRightGFX
-	ld de, vTiles0 tile TRADEANIM_RIGHT_ARROW
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * TRADEANIM_RIGHT_ARROW
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(TradeArrowRightGFX)
 	call FarCopyBytes
 	ld hl, TradeArrowLeftGFX
-	ld de, vTiles0 tile TRADEANIM_LEFT_ARROW
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * TRADEANIM_LEFT_ARROW
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(TradeArrowLeftGFX)
 	call FarCopyBytes
 	xor a
@@ -208,7 +208,7 @@ RunTradeAnimScript:
 	call TradeAnim_GetFrontpic
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
-	ld de, vTiles0 tile $31
+	ld de, vTiles0 + LEN_2BPP_TILE * $31
 	call TradeAnim_GetFrontpic
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName
@@ -832,7 +832,7 @@ TradeAnim_ShowGivemonFrontpic:
 	jr TradeAnim_ShowFrontpic
 
 TradeAnim_ShowGetmonFrontpic:
-	ld de, vTiles0 tile $31
+	ld de, vTiles0 + LEN_2BPP_TILE * $31
 TradeAnim_ShowFrontpic:
 	call DelayFrame
 	ld hl, vTiles2
@@ -1344,15 +1344,15 @@ TradeAnim_FlashBGPals:
 LoadTradeBallAndCableGFX:
 	call DelayFrame
 	ld de, TradeBallGFX
-	ld hl, vTiles0 tile $62
+	ld hl, vTiles0 + LEN_2BPP_TILE * $62
 	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, vTiles0 tile $68
+	ld hl, vTiles0 + LEN_2BPP_TILE * $68
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	ld de, TradeCableGFX
-	ld hl, vTiles0 tile $74
+	ld hl, vTiles0 + LEN_2BPP_TILE * $74
 	lb bc, BANK(TradeCableGFX), 4
 	call Request2bpp
 	xor a ; SPRITE_ANIM_DICT_DEFAULT
@@ -1366,7 +1366,7 @@ LoadTradeBubbleGFX:
 	ld e, MONICON_TRADE
 	callfar LoadMenuMonIcon
 	ld de, TradeBubbleGFX
-	ld hl, vTiles0 tile $72
+	ld hl, vTiles0 + LEN_2BPP_TILE * $72
 	lb bc, BANK(TradeBubbleGFX), 4
 	call Request2bpp
 	xor a ; SPRITE_ANIM_DICT_DEFAULT

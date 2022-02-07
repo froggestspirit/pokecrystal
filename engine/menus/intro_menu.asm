@@ -1324,7 +1324,7 @@ Copyright:
 	call ClearTilemap
 	call LoadFontsExtra
 	ld de, CopyrightGFX
-	ld hl, vTiles2 tile $60
+	ld hl, vTiles2 + LEN_2BPP_TILE * $60
 	lb bc, BANK(CopyrightGFX), 29
 	call Request2bpp
 	hlcoord 2, 7

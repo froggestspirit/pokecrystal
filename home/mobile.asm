@@ -262,7 +262,7 @@ Function3f88::
 	ld b, 0
 .row
 	push bc
-	ld c, 1 tiles / 2
+	ld c, 1 * LEN_2BPP_TILE / 2
 .col
 	ld a, [de]
 	inc de
@@ -281,7 +281,7 @@ Function3f9f::
 	ld hl, wDecompressScratch
 .row
 	push bc
-	ld c, 1 tiles / 2
+	ld c, 1 * LEN_2BPP_TILE / 2
 .col
 	ld a, [de]
 	inc de

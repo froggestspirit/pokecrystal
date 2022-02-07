@@ -30,11 +30,11 @@ LoadPoisonBGPals:
 	ld a, BANK(wBGPals2)
 	ldh [rSVBK], a
 	ld hl, wBGPals2
-	ld c, 4 palettes
+	ld c, 4 * PALETTE_SIZE
 .loop
-	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
+	ld a, LOW(palred 28 + (1 << 5) * 21 + (1 << 10) * 31)
 	ld [hli], a
-	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)
+	ld a, HIGH(palred 28 + (1 << 5) * 21 + (1 << 10) * 31)
 	ld [hli], a
 	dec c
 	jr nz, .loop

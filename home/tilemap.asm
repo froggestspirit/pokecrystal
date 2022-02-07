@@ -189,7 +189,7 @@ ClearPalettes::
 
 ; Fill wBGPals2 and wOBPals2 with $ffff (white)
 	ld hl, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	ld a, $ff
 	call ByteFill
 

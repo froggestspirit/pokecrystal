@@ -107,10 +107,10 @@ IntroScene1:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroUnownsGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroPulseGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownATilemap
 	debgcoord 0, 0
@@ -121,11 +121,11 @@ IntroScene1:
 	ldh [rSVBK], a
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -183,7 +183,7 @@ IntroScene3:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroBackgroundGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroBackgroundTilemap
 	debgcoord 0, 0
@@ -194,11 +194,11 @@ IntroScene3:
 	ldh [rSVBK], a
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -246,10 +246,10 @@ IntroScene5:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroUnownsGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroPulseGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownHITilemap
 	debgcoord 0, 0
@@ -260,11 +260,11 @@ IntroScene5:
 	ldh [rSVBK], a
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -343,17 +343,17 @@ IntroScene7:
 	call Intro_DecompressRequest2bpp_64Tiles
 
 	ld hl, IntroPichuWooperGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroSuicuneRunGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_255Tiles
 
 	ld hl, IntroBackgroundGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 
 	ld hl, IntroBackgroundTilemap
@@ -367,12 +367,12 @@ IntroScene7:
 
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
@@ -514,7 +514,7 @@ IntroScene11:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroUnownsGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownsTilemap
 	debgcoord 0, 0
@@ -525,11 +525,11 @@ IntroScene11:
 	ldh [rSVBK], a
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroUnownsPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -637,10 +637,10 @@ IntroScene13:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroSuicuneRunGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_255Tiles
 	ld hl, IntroBackgroundGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroBackgroundTilemap
 	debgcoord 0, 0
@@ -651,11 +651,11 @@ IntroScene13:
 	ldh [rSVBK], a
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroBackgroundPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -741,13 +741,13 @@ IntroScene15:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroSuicuneJumpGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownBackGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld de, IntroGrass4GFX
-	ld hl, vTiles1 tile $00
+	ld hl, vTiles1 + LEN_2BPP_TILE * $00
 	lb bc, BANK(IntroGrass4GFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneJumpTilemap
@@ -760,11 +760,11 @@ IntroScene15:
 	ldh [rSVBK], a
 	ld hl, IntroSuicunePalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroSuicunePalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -823,7 +823,7 @@ IntroScene17:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroSuicuneCloseGFX
-	ld de, vTiles1 tile $00
+	ld de, vTiles1 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_255Tiles
 	ld hl, IntroSuicuneCloseTilemap
 	debgcoord 0, 0
@@ -834,11 +834,11 @@ IntroScene17:
 	ldh [rSVBK], a
 	ld hl, IntroSuicuneClosePalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroSuicuneClosePalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -889,13 +889,13 @@ IntroScene19:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroSuicuneBackGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownsGFX
-	ld de, vTiles1 tile $00
+	ld de, vTiles1 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld de, IntroGrass4GFX
-	ld hl, vTiles1 tile $7f
+	ld hl, vTiles1 + LEN_2BPP_TILE * $7f
 	lb bc, BANK(IntroGrass4GFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneBackTilemap
@@ -908,11 +908,11 @@ IntroScene19:
 	ldh [rSVBK], a
 	ld hl, IntroSuicunePalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroSuicunePalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -1067,7 +1067,7 @@ IntroScene26:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, IntroCrystalUnownsGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroCrystalUnownsTilemap
 	debgcoord 0, 0
@@ -1078,11 +1078,11 @@ IntroScene26:
 	ldh [rSVBK], a
 	ld hl, IntroCrystalUnownsPalette
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, IntroCrystalUnownsPalette
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -1168,7 +1168,7 @@ Intro_Scene24_ApplyPaletteFade:
 	ld b, 8 ; number of BG pals
 .loop1
 	push hl
-	ld c, 1 palettes
+	ld c, 1 * PALETTE_SIZE
 .loop2
 	ld a, [hli]
 	ld [de], a
@@ -1257,7 +1257,7 @@ CrystalIntro_UnownFade:
 	push hl
 	push bc
 	ld hl, wBGPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	xor a
 	call ByteFill
 	pop bc
@@ -1359,7 +1359,7 @@ Intro_Scene20_AppearUnown:
 	adc d
 	ld d, a
 
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop bc
 
@@ -1371,7 +1371,7 @@ Intro_Scene20_AppearUnown:
 	adc d
 	ld d, a
 
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
@@ -1531,9 +1531,9 @@ Intro_RustleGrass:
 	ld [wRequested2bppSource], a
 	ld a, [hli]
 	ld [wRequested2bppSource + 1], a
-	ld a, LOW(vTiles2 tile $09)
+	ld a, LOW(vTiles2 + LEN_2BPP_TILE * $09)
 	ld [wRequested2bppDest], a
-	ld a, HIGH(vTiles2 tile $09)
+	ld a, HIGH(vTiles2 + LEN_2BPP_TILE * $09)
 	ld [wRequested2bppDest + 1], a
 	ld a, 4
 	ld [wRequested2bppSize], a
@@ -1557,7 +1557,7 @@ Intro_ClearBGPals:
 	ldh [rSVBK], a
 
 	ld hl, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	xor a
 	call ByteFill
 

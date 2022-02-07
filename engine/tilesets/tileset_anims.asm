@@ -38,7 +38,7 @@ _AnimateTileset::
 Tileset0Anim:
 TilesetJohtoModernAnim:
 TilesetKantoAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 + LEN_2BPP_TILE * $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -51,9 +51,9 @@ TilesetKantoAnim:
 	dw NULL,  DoneTileAnimation
 
 TilesetParkAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 + LEN_2BPP_TILE * $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
-	dw vTiles2 tile $5f, AnimateFountainTile
+	dw vTiles2 + LEN_2BPP_TILE * $5f, AnimateFountainTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
 	dw NULL,  WaitTileAnimation
@@ -72,13 +72,13 @@ TilesetForestAnim:
 	dw NULL,  ForestTreeLeftAnimation2
 	dw NULL,  ForestTreeRightAnimation2
 	dw NULL,  AnimateFlowerTile
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 + LEN_2BPP_TILE * $14, AnimateWaterTile
 	dw NULL,  AnimateWaterPalette
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 
 TilesetJohtoAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 + LEN_2BPP_TILE * $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateWaterPalette
@@ -94,9 +94,9 @@ TilesetJohtoAnim:
 
 UnusedTilesetAnim1: ; unreferenced
 ; Scrolls tile $03 like cave water, but also has the standard $03 flower tile.
-	dw vTiles2 tile $03, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
-	dw vTiles2 tile $03, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, WriteTileFromAnimBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -108,9 +108,9 @@ UnusedTilesetAnim1: ; unreferenced
 
 UnusedTilesetAnim2: ; unreferenced
 ; Scrolls tile $14 like cave water.
-	dw vTiles2 tile $14, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $14, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
-	dw vTiles2 tile $14, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $14, WriteTileFromAnimBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -121,7 +121,7 @@ UnusedTilesetAnim2: ; unreferenced
 	dw NULL,  DoneTileAnimation
 
 TilesetPortAnim:
-	dw vTiles2 tile $14, AnimateWaterTile
+	dw vTiles2 + LEN_2BPP_TILE * $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -146,47 +146,47 @@ TilesetEliteFourRoomAnim:
 
 UnusedTilesetAnim3: ; unreferenced
 ; Scrolls tile $53 like a waterfall; scrolls tile $03 like cave water.
-	dw vTiles2 tile $53, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $53, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
-	dw vTiles2 tile $53, WriteTileFromAnimBuffer
-	dw vTiles2 tile $03, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $53, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
-	dw vTiles2 tile $03, WriteTileFromAnimBuffer
-	dw vTiles2 tile $53, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $53, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
-	dw vTiles2 tile $53, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $53, WriteTileFromAnimBuffer
 	dw NULL,  DoneTileAnimation
 
 UnusedTilesetAnim4: ; unreferenced
 ; Scrolls tile $54 like a waterfall; scrolls tile $03 like cave water.
-	dw vTiles2 tile $54, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $54, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
-	dw vTiles2 tile $54, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $54, WriteTileFromAnimBuffer
 	dw NULL,  WaitTileAnimation
-	dw vTiles2 tile $03, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
-	dw vTiles2 tile $03, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $03, WriteTileFromAnimBuffer
 	dw NULL,  WaitTileAnimation
-	dw vTiles2 tile $54, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $54, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
-	dw vTiles2 tile $54, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $54, WriteTileFromAnimBuffer
 	dw NULL,  DoneTileAnimation
 
 TilesetCaveAnim:
 TilesetDarkCaveAnim:
-	dw vTiles2 tile $14, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $14, ReadTileToAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $14, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $14, WriteTileFromAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  AnimateWaterPalette
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $40, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $40, ReadTileToAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -194,20 +194,20 @@ TilesetDarkCaveAnim:
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $40, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $40, WriteTileFromAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
 
 TilesetIcePathAnim:
-	dw vTiles2 tile $35, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $35, ReadTileToAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $35, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $35, WriteTileFromAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  AnimateWaterPalette
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $31, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $31, ReadTileToAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
@@ -215,7 +215,7 @@ TilesetIcePathAnim:
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileDown
 	dw NULL,  FlickeringCaveEntrancePalette
-	dw vTiles2 tile $31, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $31, WriteTileFromAnimBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
 
@@ -239,9 +239,9 @@ TilesetTowerAnim:
 
 UnusedTilesetAnim5: ; unreferenced
 ; Scrolls tile $4f like cave water.
-	dw vTiles2 tile $4f, ReadTileToAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $4f, ReadTileToAnimBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
-	dw vTiles2 tile $4f, WriteTileFromAnimBuffer
+	dw vTiles2 + LEN_2BPP_TILE * $4f, WriteTileFromAnimBuffer
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -507,7 +507,7 @@ ForestTreeLeftAnimation:
 .got_frames
 ; Write the tile graphic from hl (now sp) to tile $0c (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $0c
+	ld hl, vTiles2 + LEN_2BPP_TILE * $0c
 	jp WriteTile
 
 ForestTreeLeftFrames:
@@ -554,7 +554,7 @@ ForestTreeRightAnimation:
 .got_frames
 ; Write the tile graphic from hl (now sp) to tile $0f (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $0f
+	ld hl, vTiles2 + LEN_2BPP_TILE * $0f
 	jp WriteTile
 
 ForestTreeLeftAnimation2:
@@ -592,7 +592,7 @@ ForestTreeLeftAnimation2:
 .got_frames
 ; Write the tile graphic from hl (now sp) to tile $0c (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $0c
+	ld hl, vTiles2 + LEN_2BPP_TILE * $0c
 	jp WriteTile
 
 ForestTreeRightAnimation2:
@@ -634,7 +634,7 @@ ForestTreeRightAnimation2:
 .got_frames
 ; Write the tile graphic from hl (now sp) to tile $0f (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $0f
+	ld hl, vTiles2 + LEN_2BPP_TILE * $0f
 	jp WriteTile
 
 GetForestTreeFrame:
@@ -686,7 +686,7 @@ AnimateFlowerTile:
 
 ; Write the tile graphic from hl (now sp) to tile $03 (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $03
+	ld hl, vTiles2 + LEN_2BPP_TILE * $03
 	jp WriteTile
 
 .FlowerTileFrames:
@@ -720,7 +720,7 @@ AnimateLavaBubbleTile1:
 
 ; Write the tile graphic from hl (now sp) to tile $5b (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $5b
+	ld hl, vTiles2 + LEN_2BPP_TILE * $5b
 	jp WriteTile
 
 AnimateLavaBubbleTile2:
@@ -745,7 +745,7 @@ AnimateLavaBubbleTile2:
 
 ; Write the tile graphic from hl (now sp) to tile $38 (now hl)
 	ld sp, hl
-	ld hl, vTiles2 tile $38
+	ld hl, vTiles2 + LEN_2BPP_TILE * $38
 	jp WriteTile
 
 LavaBubbleTileFrames:
@@ -799,14 +799,14 @@ AnimateTowerPillarTile:
 	jr WriteTile
 
 .TowerPillarTileFrameOffsets:
-	db 0 tiles
-	db 1 tiles
-	db 2 tiles
-	db 3 tiles
-	db 4 tiles
-	db 3 tiles
-	db 2 tiles
-	db 1 tiles
+	db 0 * LEN_2BPP_TILE
+	db 1 * LEN_2BPP_TILE
+	db 2 * LEN_2BPP_TILE
+	db 3 * LEN_2BPP_TILE
+	db 4 * LEN_2BPP_TILE
+	db 3 * LEN_2BPP_TILE
+	db 2 * LEN_2BPP_TILE
+	db 1 * LEN_2BPP_TILE
 
 StandingTileFrame:
 ; Tick the wTileAnimationTimer.
@@ -922,7 +922,7 @@ AnimateWaterPalette:
 	ret nz
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER color 0
+	ld a, (1 << rBGPI_AUTO_INCREMENT) + PALETTE_SIZE * PAL_BG_WATER + PAL_COLOR_SIZE * 0
 	ldh [rBGPI], a
 
 	ldh a, [rSVBK]
@@ -940,7 +940,7 @@ AnimateWaterPalette:
 ; Copy one color from hl to rBGPI via rBGPD
 
 ; color1
-	ld hl, wBGPals1 palette PAL_BG_WATER color 1
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_WATER + PAL_COLOR_SIZE * 1
 	ld a, [hli]
 	ldh [rBGPD], a
 	ld a, [hli]
@@ -948,7 +948,7 @@ AnimateWaterPalette:
 	jr .end
 
 .color0
-	ld hl, wBGPals1 palette PAL_BG_WATER color 0
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_WATER + PAL_COLOR_SIZE * 0
 	ld a, [hli]
 	ldh [rBGPD], a
 	ld a, [hli]
@@ -956,7 +956,7 @@ AnimateWaterPalette:
 	jr .end
 
 .color2
-	ld hl, wBGPals1 palette PAL_BG_WATER color 2
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_WATER + PAL_COLOR_SIZE * 2
 	ld a, [hli]
 	ldh [rBGPD], a
 	ld a, [hli]
@@ -989,7 +989,7 @@ FlickeringCaveEntrancePalette:
 	ldh [rSVBK], a
 
 ; Ready for BGPD input
-	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW color 0
+	ld a, (1 << rBGPI_AUTO_INCREMENT) + PALETTE_SIZE * PAL_BG_YELLOW + PAL_COLOR_SIZE * 0
 	ldh [rBGPI], a
 
 ; A cycle of 2 colors (0 2), updating every other vblank
@@ -1000,11 +1000,11 @@ FlickeringCaveEntrancePalette:
 ; Copy one color from hl to rBGPI via rBGPD
 
 ; color0
-	ld hl, wBGPals1 palette PAL_BG_YELLOW color 0
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_YELLOW + PAL_COLOR_SIZE * 0
 	jr .okay
 
 .color1
-	ld hl, wBGPals1 palette PAL_BG_YELLOW color 1
+	ld hl, wBGPals1 + PALETTE_SIZE * PAL_BG_YELLOW + PAL_COLOR_SIZE * 1
 
 .okay
 	ld a, [hli]
@@ -1016,16 +1016,16 @@ FlickeringCaveEntrancePalette:
 	ldh [rSVBK], a
 	ret
 
-TowerPillarTilePointer1:  dw vTiles2 tile $2d, TowerPillarTile1
-TowerPillarTilePointer2:  dw vTiles2 tile $2f, TowerPillarTile2
-TowerPillarTilePointer3:  dw vTiles2 tile $3d, TowerPillarTile3
-TowerPillarTilePointer4:  dw vTiles2 tile $3f, TowerPillarTile4
-TowerPillarTilePointer5:  dw vTiles2 tile $3c, TowerPillarTile5
-TowerPillarTilePointer6:  dw vTiles2 tile $2c, TowerPillarTile6
-TowerPillarTilePointer7:  dw vTiles2 tile $4d, TowerPillarTile7
-TowerPillarTilePointer8:  dw vTiles2 tile $4f, TowerPillarTile8
-TowerPillarTilePointer9:  dw vTiles2 tile $5d, TowerPillarTile9
-TowerPillarTilePointer10: dw vTiles2 tile $5f, TowerPillarTile10
+TowerPillarTilePointer1:  dw vTiles2 + LEN_2BPP_TILE * $2d, TowerPillarTile1
+TowerPillarTilePointer2:  dw vTiles2 + LEN_2BPP_TILE * $2f, TowerPillarTile2
+TowerPillarTilePointer3:  dw vTiles2 + LEN_2BPP_TILE * $3d, TowerPillarTile3
+TowerPillarTilePointer4:  dw vTiles2 + LEN_2BPP_TILE * $3f, TowerPillarTile4
+TowerPillarTilePointer5:  dw vTiles2 + LEN_2BPP_TILE * $3c, TowerPillarTile5
+TowerPillarTilePointer6:  dw vTiles2 + LEN_2BPP_TILE * $2c, TowerPillarTile6
+TowerPillarTilePointer7:  dw vTiles2 + LEN_2BPP_TILE * $4d, TowerPillarTile7
+TowerPillarTilePointer8:  dw vTiles2 + LEN_2BPP_TILE * $4f, TowerPillarTile8
+TowerPillarTilePointer9:  dw vTiles2 + LEN_2BPP_TILE * $5d, TowerPillarTile9
+TowerPillarTilePointer10: dw vTiles2 + LEN_2BPP_TILE * $5f, TowerPillarTile10
 
 TowerPillarTile1:  INCBIN "gfx/tilesets/tower-pillar/1.2bpp"
 TowerPillarTile2:  INCBIN "gfx/tilesets/tower-pillar/2.2bpp"
@@ -1038,10 +1038,10 @@ TowerPillarTile8:  INCBIN "gfx/tilesets/tower-pillar/8.2bpp"
 TowerPillarTile9:  INCBIN "gfx/tilesets/tower-pillar/9.2bpp"
 TowerPillarTile10: INCBIN "gfx/tilesets/tower-pillar/10.2bpp"
 
-WhirlpoolFrames1: dw vTiles2 tile $32, WhirlpoolTiles1
-WhirlpoolFrames2: dw vTiles2 tile $33, WhirlpoolTiles2
-WhirlpoolFrames3: dw vTiles2 tile $42, WhirlpoolTiles3
-WhirlpoolFrames4: dw vTiles2 tile $43, WhirlpoolTiles4
+WhirlpoolFrames1: dw vTiles2 + LEN_2BPP_TILE * $32, WhirlpoolTiles1
+WhirlpoolFrames2: dw vTiles2 + LEN_2BPP_TILE * $33, WhirlpoolTiles2
+WhirlpoolFrames3: dw vTiles2 + LEN_2BPP_TILE * $42, WhirlpoolTiles3
+WhirlpoolFrames4: dw vTiles2 + LEN_2BPP_TILE * $43, WhirlpoolTiles4
 
 WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
 WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"

@@ -158,7 +158,7 @@ NamingScreen:
 
 .Box:
 	ld de, PokeBallSpriteGFX
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	lb bc, BANK(PokeBallSpriteGFX), 4
 	call Request2bpp
 	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
@@ -192,16 +192,16 @@ NamingScreen:
 
 .LoadSprite:
 	push de
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	ld c, 4
 	push bc
 	call Request2bpp
 	pop bc
-	ld hl, 12 tiles
+	ld hl, 12 * LEN_2BPP_TILE
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, vTiles0 tile $04
+	ld hl, vTiles0 + LEN_2BPP_TILE * $04
 	call Request2bpp
 	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
 	ld hl, wSpriteAnimDict
@@ -835,24 +835,24 @@ LoadNamingScreenGFX:
 	call LoadFontsExtra
 
 	ld de, NamingScreenGFX_MiddleLine
-	ld hl, vTiles0 tile NAMINGSCREEN_MIDDLELINE
+	ld hl, vTiles0 + LEN_2BPP_TILE * NAMINGSCREEN_MIDDLELINE
 	lb bc, BANK(NamingScreenGFX_MiddleLine), 1
 	call Get1bpp
 
 	ld de, NamingScreenGFX_UnderLine
-	ld hl, vTiles0 tile NAMINGSCREEN_UNDERLINE
+	ld hl, vTiles0 + LEN_2BPP_TILE * NAMINGSCREEN_UNDERLINE
 	lb bc, BANK(NamingScreenGFX_UnderLine), 1
 	call Get1bpp
 
-	ld de, vTiles2 tile NAMINGSCREEN_BORDER
+	ld de, vTiles2 + LEN_2BPP_TILE * NAMINGSCREEN_BORDER
 	ld hl, NamingScreenGFX_Border
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(NamingScreenGFX_Border)
 	call FarCopyBytes
 
-	ld de, vTiles0 tile NAMINGSCREEN_CURSOR
+	ld de, vTiles0 + LEN_2BPP_TILE * NAMINGSCREEN_CURSOR
 	ld hl, NamingScreenGFX_Cursor
-	ld bc, 2 tiles
+	ld bc, 2 * LEN_2BPP_TILE
 	ld a, BANK(NamingScreenGFX_Cursor)
 	call FarCopyBytes
 
@@ -920,9 +920,9 @@ _ComposeMailMessage:
 	call ClearBGPalettes
 	call DisableLCD
 	call LoadNamingScreenGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	ld hl, .MailIcon
-	ld bc, 8 tiles
+	ld bc, 8 * LEN_2BPP_TILE
 	ld a, BANK(.MailIcon)
 	call FarCopyBytes
 	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00

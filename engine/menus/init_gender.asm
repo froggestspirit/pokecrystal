@@ -81,7 +81,7 @@ InitGenderScreen:
 LoadGenderScreenPal:
 	ld hl, .Palette
 	ld de, wBGPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
@@ -92,7 +92,7 @@ INCLUDE "gfx/new_game/gender_screen.pal"
 
 LoadGenderScreenLightBlueTile:
 	ld de, .LightBlueTile
-	ld hl, vTiles2 tile $00
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
 	lb bc, BANK(.LightBlueTile), 1
 	call Get2bpp
 	ret

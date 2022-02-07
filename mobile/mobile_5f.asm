@@ -2,7 +2,7 @@ Function17c000:
 	call DisableLCD
 
 	ld hl, vTiles2
-	ld bc, $31 tiles
+	ld bc, $31 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 
@@ -49,15 +49,15 @@ Function17c000:
 
 	ld hl, HaveWantPals
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
 	ldh [rSVBK], a
 
 	ld hl, MobileSelectGFX
-	ld de, vTiles0 tile $30
-	ld bc, $20 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $30
+	ld bc, $20 * LEN_2BPP_TILE
 	call CopyBytes
 
 	ld a, 1
@@ -65,12 +65,12 @@ Function17c000:
 
 	ld hl, HaveWantGFX
 	ld de, vTiles2
-	ld bc, $80 tiles
+	ld bc, $80 * LEN_2BPP_TILE
 	call CopyBytes
 
-	ld hl, HaveWantGFX + $80 tiles
+	ld hl, HaveWantGFX + $80 * LEN_2BPP_TILE
 	ld de, vTiles1
-	ld bc, $10 tiles
+	ld bc, $10 * LEN_2BPP_TILE
 	call CopyBytes
 
 	xor a
@@ -605,29 +605,29 @@ Function17d370:
 	call ClearScreen
 	farcall ReloadMapPart
 	call DisableLCD
-	ld hl, vTiles0 tile $ee
+	ld hl, vTiles0 + LEN_2BPP_TILE * $ee
 	ld de, wc608
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, vTiles1
-	ld bc, $48 tiles
+	ld bc, $48 * LEN_2BPP_TILE
 	call CopyBytes
 	xor a
-	ld hl, vTiles2 tile $7f
-	ld bc, 1 tiles
+	ld hl, vTiles2 + LEN_2BPP_TILE * $7f
+	ld bc, 1 * LEN_2BPP_TILE
 	call ByteFill
 	ld hl, wc608
-	ld de, vTiles0 tile $ee
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $ee
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	xor a
 	ldh [rVBK], a
 	ld hl, PostalMarkGFX
-	ld de, vTiles2 tile $60
-	ld bc, 1 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $60
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	call EnableLCD
 	call Function17d60b
@@ -652,23 +652,23 @@ Function17d3f6:
 
 Function17d405:
 	call DisableLCD
-	ld hl, vTiles0 tile $ee
+	ld hl, vTiles0 + LEN_2BPP_TILE * $ee
 	ld de, wc608
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, vTiles1
-	ld bc, $48 tiles
+	ld bc, $48 * LEN_2BPP_TILE
 	call CopyBytes
 	xor a
-	ld hl, vTiles2 tile $7f
-	ld bc, 1 tiles
+	ld hl, vTiles2 + LEN_2BPP_TILE * $7f
+	ld bc, 1 * LEN_2BPP_TILE
 	call ByteFill
 	ld hl, wc608
-	ld de, vTiles0 tile $ee
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $ee
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	xor a
 	ldh [rVBK], a
@@ -679,7 +679,7 @@ Function17d405:
 	ldh [rSVBK], a
 	ld hl, PokemonNewsPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -940,7 +940,7 @@ Function17d5f6:
 	ldh [rSVBK], a
 	ld hl, wc608
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	ld a, $4
 	ldh [rSVBK], a
@@ -1898,7 +1898,7 @@ Function17dcaf:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, wBGPals1
-	ld de, 1 palettes
+	ld de, 1 * PALETTE_SIZE
 	ld c, 8
 .asm_17dcbb
 	push hl
@@ -2867,7 +2867,7 @@ Function17e2a7:
 	ld [wcf66], a
 	farcall Function118233
 	ld de, PostalMarkGFX
-	ld hl, vTiles2 tile $60
+	ld hl, vTiles2 + LEN_2BPP_TILE * $60
 	lb bc, BANK(PostalMarkGFX), 1
 	call Get2bpp
 	ld a, [wMobileErrorCodeBuffer]

@@ -43,7 +43,7 @@ InitDisplayForRedCredits:
 	xor a
 	call ByteFill
 	ld hl, wBGPals1
-	ld c, 4 tiles
+	ld c, 4 * LEN_2BPP_TILE
 .load_white_palettes
 	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
@@ -71,7 +71,7 @@ ResetDisplayBetweenHallOfFameMons:
 	hlbgcoord 0, 0
 	ld de, wDecompressScratch
 	ld b, 0
-	ld c, 4 tiles
+	ld c, 4 * LEN_2BPP_TILE
 	call Request2bpp
 	pop af
 	ldh [rSVBK], a

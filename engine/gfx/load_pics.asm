@@ -139,7 +139,7 @@ GetAnimatedEnemyFrontpic:
 	ld b, a
 	call Get2bpp
 	pop hl
-	ld de, 7 * 7 tiles
+	ld de, 7 * 7 * LEN_2BPP_TILE
 	add hl, de
 	push hl
 	ld a, BANK(wBasePicSize)
@@ -147,15 +147,15 @@ GetAnimatedEnemyFrontpic:
 	call GetFarWRAMByte
 	pop hl
 	and $f
-	ld de, wDecompressEnemyFrontpic + 5 * 5 tiles
+	ld de, wDecompressEnemyFrontpic + 5 * 5 * LEN_2BPP_TILE
 	ld c, 5 * 5
 	cp 5
 	jr z, .got_dims
-	ld de, wDecompressEnemyFrontpic + 6 * 6 tiles
+	ld de, wDecompressEnemyFrontpic + 6 * 6 * LEN_2BPP_TILE
 	ld c, 6 * 6
 	cp 6
 	jr z, .got_dims
-	ld de, wDecompressEnemyFrontpic + 7 * 7 tiles
+	ld de, wDecompressEnemyFrontpic + 7 * 7 * LEN_2BPP_TILE
 	ld c, 7 * 7
 .got_dims
 	push hl
@@ -381,12 +381,12 @@ FixBackpicAlignment:
 	jr z, .keep_dims
 	ld a, c
 	cp 7 * 7
-	ld de, 7 * 7 tiles
+	ld de, 7 * 7 * LEN_2BPP_TILE
 	jr z, .got_dims
 	cp 6 * 6
-	ld de, 6 * 6 tiles
+	ld de, 6 * 6 * LEN_2BPP_TILE
 	jr z, .got_dims
-	ld de, 5 * 5 tiles
+	ld de, 5 * 5 * LEN_2BPP_TILE
 
 .got_dims
 	ld a, [hl]

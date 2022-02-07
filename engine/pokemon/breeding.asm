@@ -682,15 +682,15 @@ EggHatch_AnimationSequence:
 	farcall BlankScreen
 	call DisableLCD
 	ld hl, EggHatchGFX
-	ld de, vTiles0 tile $00
-	ld bc, 2 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
+	ld bc, 2 * LEN_2BPP_TILE
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	farcall ClearSpriteAnims
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld a, [wJumptableIndex]
 	call GetHatchlingFrontpic
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	ld a, EGG
 	call GetEggFrontpic
 	ld de, MUSIC_EVOLUTION

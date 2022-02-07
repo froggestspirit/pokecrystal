@@ -25,21 +25,21 @@ _CardFlip:
 	call LoadFontsExtra
 
 	ld hl, CardFlipLZ01
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Decompress
 	ld hl, CardFlipLZ02
-	ld de, vTiles2 tile $3e
+	ld de, vTiles2 + LEN_2BPP_TILE * $3e
 	call Decompress
 	ld hl, CardFlipLZ03
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Decompress
 	ld hl, CardFlipOffButtonGFX
-	ld de, vTiles0 tile CARDFLIP_LIGHT_OFF
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * CARDFLIP_LIGHT_OFF
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 	ld hl, CardFlipOnButtonGFX
-	ld de, vTiles0 tile CARDFLIP_LIGHT_ON
-	ld bc, 1 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * CARDFLIP_LIGHT_ON
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 
 	call CardFlip_ShiftDigitsUpOnePixel
@@ -583,11 +583,11 @@ CardFlip_CopyOAM:
 CardFlip_ShiftDigitsUpOnePixel:
 ; The top rows of digits 1-9 become the bottom rows of 0-8,
 ; so this routine relies on the top rows being blank.
-	ld de, vTiles0 tile "0"
-	ld hl, vTiles0 tile "0" + 2
-	ld bc, 10 tiles - 2
+	ld de, vTiles0 + LEN_2BPP_TILE * "0"
+	ld hl, vTiles0 + LEN_2BPP_TILE * "0" + 2
+	ld bc, 10 * LEN_2BPP_TILE - 2
 	call CopyBytes
-	ld hl, vTiles0 tile "9" + 1 tiles - 2
+	ld hl, vTiles0 + LEN_2BPP_TILE * "9" + 1 * LEN_2BPP_TILE - 2
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -1586,7 +1586,7 @@ CardFlip_InitAttrPals:
 	ldh [rSVBK], a
 	ld hl, .palettes
 	ld de, wBGPals1
-	ld bc, 9 palettes
+	ld bc, 9 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a

@@ -19,7 +19,7 @@ UnusedTitleScreen: ; unreferenced
 	ld bc, vBGMap0 - vTiles2
 	call CopyBytes
 
-	ld hl, UnusedTitleBG_GFX + $80 tiles
+	ld hl, UnusedTitleBG_GFX + $80 * LEN_2BPP_TILE
 	ld de, vTiles1
 	ld bc, vTiles2 - vTiles1
 	call CopyBytes
@@ -67,22 +67,22 @@ UnusedTitleScreen: ; unreferenced
 
 	ld hl, UnusedTitleBG_Palettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_Palettes
 	ld de, wOBPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Palettes
 	ld de, wBGPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_Palettes
 	ld de, wOBPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af

@@ -571,17 +571,17 @@ Function8b677:
 Function8b690:
 	ld hl, MobileCardListGFX
 	ld de, vTiles2
-	ld bc, $16 tiles
+	ld bc, $16 * LEN_2BPP_TILE
 	ld a, BANK(MobileCardListGFX)
 	call FarCopyBytes
-	ld hl, MobileCardListGFX tile $15
-	ld de, vTiles2 tile $61
-	ld bc, 1 tiles
+	ld hl, MobileCardListGFX + LEN_2BPP_TILE * $15
+	ld de, vTiles2 + LEN_2BPP_TILE * $61
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(MobileCardListGFX)
 	call FarCopyBytes
-	ld hl, MobileCardListGFX tile $16
-	ld de, vTiles0 tile $ee
-	ld bc, 1 tiles
+	ld hl, MobileCardListGFX + LEN_2BPP_TILE * $16
+	ld de, vTiles0 + LEN_2BPP_TILE * $ee
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(MobileCardListGFX)
 	call FarCopyBytes
 	ret
@@ -593,7 +593,7 @@ Function8b6bb:
 	ldh [rSVBK], a
 	ld hl, Palette_8b6d5
 	ld de, wBGPals1
-	ld bc, 3 palettes
+	ld bc, 3 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a

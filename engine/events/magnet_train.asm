@@ -141,11 +141,11 @@ MagnetTrain_LoadGFX_PlayMusic:
 	call Request2bpp
 
 	; Load the player sprite's walking frames
-	ld hl, 12 tiles
+	ld hl, 12 * LEN_2BPP_TILE
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, vTiles0 tile $04
+	ld hl, vTiles0 + LEN_2BPP_TILE * $04
 	ld c, 4
 	call Request2bpp
 

@@ -36,17 +36,17 @@ Credits::
 	jr nz, .load_loop
 
 	ld de, CreditsBorderGFX
-	ld hl, vTiles2 tile $20
+	ld hl, vTiles2 + LEN_2BPP_TILE * $20
 	lb bc, BANK(CreditsBorderGFX), 9
 	call Request2bpp
 
 	ld de, CopyrightGFX
-	ld hl, vTiles2 tile $60
+	ld hl, vTiles2 + LEN_2BPP_TILE * $60
 	lb bc, BANK(CopyrightGFX), 29
 	call Request2bpp
 
 	ld de, TheEndGFX
-	ld hl, vTiles2 tile $40
+	ld hl, vTiles2 + LEN_2BPP_TILE * $40
 	lb bc, BANK(TheEndGFX), 16
 	call Request2bpp
 
@@ -569,24 +569,24 @@ Credits_LoadBorderGFX:
 
 .Frames:
 	dw CreditsPichuGFX
-	dw CreditsPichuGFX     + 16 tiles
-	dw CreditsPichuGFX     + 32 tiles
-	dw CreditsPichuGFX     + 48 tiles
+	dw CreditsPichuGFX     + 16 * LEN_2BPP_TILE
+	dw CreditsPichuGFX     + 32 * LEN_2BPP_TILE
+	dw CreditsPichuGFX     + 48 * LEN_2BPP_TILE
 
 	dw CreditsSmoochumGFX
-	dw CreditsSmoochumGFX  + 16 tiles
-	dw CreditsSmoochumGFX  + 32 tiles
-	dw CreditsSmoochumGFX  + 48 tiles
+	dw CreditsSmoochumGFX  + 16 * LEN_2BPP_TILE
+	dw CreditsSmoochumGFX  + 32 * LEN_2BPP_TILE
+	dw CreditsSmoochumGFX  + 48 * LEN_2BPP_TILE
 
 	dw CreditsDittoGFX
-	dw CreditsDittoGFX     + 16 tiles
-	dw CreditsDittoGFX     + 32 tiles
-	dw CreditsDittoGFX     + 48 tiles
+	dw CreditsDittoGFX     + 16 * LEN_2BPP_TILE
+	dw CreditsDittoGFX     + 32 * LEN_2BPP_TILE
+	dw CreditsDittoGFX     + 48 * LEN_2BPP_TILE
 
 	dw CreditsIgglybuffGFX
-	dw CreditsIgglybuffGFX + 16 tiles
-	dw CreditsIgglybuffGFX + 32 tiles
-	dw CreditsIgglybuffGFX + 48 tiles
+	dw CreditsIgglybuffGFX + 16 * LEN_2BPP_TILE
+	dw CreditsIgglybuffGFX + 32 * LEN_2BPP_TILE
+	dw CreditsIgglybuffGFX + 48 * LEN_2BPP_TILE
 
 Credits_TheEnd:
 	ld a, $40

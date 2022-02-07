@@ -139,17 +139,17 @@ PrintPartyMonPage1:
 	call LoadFontsBattleExtra
 
 	ld de, GBPrinterHPIcon
-	ld hl, vTiles2 tile PRINTPARTY_HP
+	ld hl, vTiles2 + LEN_2BPP_TILE * PRINTPARTY_HP
 	lb bc, BANK(GBPrinterHPIcon), 1
 	call Request1bpp
 
 	ld de, GBPrinterLvIcon
-	ld hl, vTiles2 tile "<LV>"
+	ld hl, vTiles2 + LEN_2BPP_TILE * "<LV>"
 	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
-	ld de, StatsScreenPageTilesGFX + 14 tiles ; shiny icon
-	ld hl, vTiles2 tile "⁂"
+	ld de, StatsScreenPageTilesGFX + 14 * LEN_2BPP_TILE ; shiny icon
+	ld hl, vTiles2 + LEN_2BPP_TILE * "⁂"
 	lb bc, BANK(StatsScreenPageTilesGFX), 1
 	call Get2bpp
 

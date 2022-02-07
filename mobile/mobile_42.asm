@@ -165,7 +165,7 @@ Function1080b7:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, MobileTradeSpritesGFX
-	ld de, vTiles0 tile $20
+	ld de, vTiles0 + LEN_2BPP_TILE * $20
 	call Decompress
 
 	call EnableLCD
@@ -187,7 +187,7 @@ Function1080b7:
 	call Request2bpp
 
 	ld de, TradePoofGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles0 + LEN_2BPP_TILE * $06
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 
@@ -198,12 +198,12 @@ Function1080b7:
 
 	ld a, [wPlayerTrademonSpecies]
 	ld hl, wPlayerTrademonDVs
-	ld de, vTiles0 tile $30
+	ld de, vTiles0 + LEN_2BPP_TILE * $30
 	call MobileTradeAnim_GetFrontpic
 
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	call MobileTradeAnim_GetFrontpic
 
 	ld a, [wPlayerTrademonSpecies]
@@ -259,13 +259,13 @@ MobileTradeAnim_ClearTiles:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, vTiles0
-	ld bc, 3 * $80 tiles
+	ld bc, 3 * $80 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, vTiles0
-	ld bc, 3 * $80 tiles
+	ld bc, 3 * $80 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 	ret
@@ -591,7 +591,7 @@ MobileTradeAnim_ShowPlayerMonForGTS:
 	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles0 + LEN_2BPP_TILE * $06
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	ld a, [wPlayerTrademonDVs]
@@ -664,7 +664,7 @@ MobileTradeAnim_ShowOTMonFromGTS:
 	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles0 + LEN_2BPP_TILE * $06
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
@@ -732,7 +732,7 @@ MobileTradeAnim_GetOddEgg:
 	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles0 + LEN_2BPP_TILE * $06
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
@@ -806,7 +806,7 @@ MobileTradeAnim_02:
 	ldh [rSVBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -832,7 +832,7 @@ MobileTradeAnim_10:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, MobileTradeSpritesGFX
-	ld de, vTiles0 tile $20
+	ld de, vTiles0 + LEN_2BPP_TILE * $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -851,7 +851,7 @@ MobileTradeAnim_10:
 	ldh [rSVBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -875,7 +875,7 @@ MobileTradeAnim_11:
 	ld a, $0
 	ldh [rVBK], a
 	ld hl, MobileTradeSpritesGFX
-	ld de, vTiles0 tile $20
+	ld de, vTiles0 + LEN_2BPP_TILE * $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -894,7 +894,7 @@ MobileTradeAnim_11:
 	ldh [rSVBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -912,7 +912,7 @@ MobileTradeAnim_GiveTrademon1:
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 40
-	ld hl, wBGPals2 palette 6
+	ld hl, wBGPals2 + PALETTE_SIZE * 6
 	call Function1082f0
 	call Function108af4
 .loop
@@ -975,7 +975,7 @@ MobileTradeAnim_GiveTrademon1:
 
 MobileTradeAnim_GiveTrademon2:
 	ld c, 40
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 + 1 * PALETTE_SIZE
 	call Function1082f0
 	call Function108af4
 	call Function108b5a
@@ -1069,12 +1069,12 @@ MobileTradeAnim_GetTrademon1:
 
 MobileTradeAnim_GetTrademon2:
 	ld c, 20
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 + 1 * PALETTE_SIZE
 	call Function1082fa
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 20
-	ld hl, wBGPals2 + 1 palettes
+	ld hl, wBGPals2 + 1 * PALETTE_SIZE
 	call Function1082fa
 	call Function108af4
 .asm_1088ad
@@ -1137,7 +1137,7 @@ MobileTradeAnim_GetTrademon2:
 
 MobileTradeAnim_GetTrademon3:
 	ld c, 40
-	ld hl, wBGPals2 palette 6
+	ld hl, wBGPals2 + PALETTE_SIZE * 6
 	call Function1082f0
 	call Function108af4
 	call GetMobileTradeAnimByte
@@ -1178,11 +1178,11 @@ MobileTradeAnim_FadeToBlack:
 	ret
 
 Function10895e:
-	ld de, vTiles0 tile $30
+	ld de, vTiles0 + LEN_2BPP_TILE * $30
 	jr asm_108966
 
 Function108963:
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 asm_108966:
 	call DelayFrame
 	ld hl, vTiles2
@@ -1372,7 +1372,7 @@ Function108ad4:
 .asm_108adf
 	ld a, $1
 	ldh [rVBK], a
-	ld hl, vTiles2 tile $4a
+	ld hl, vTiles2 + LEN_2BPP_TILE * $4a
 	lb bc, BANK(MobileCable1GFX), 16 ; aka BANK(MobileCable2GFX)
 	call Get2bppViaHDMA
 	call DelayFrame
@@ -1390,22 +1390,22 @@ Function108af4:
 	jr z, .copy_MobileTradeOB1Palettes
 	ld hl, MobileTradeOB2Palettes
 	ld de, wOBPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, MobileTradeOB2Palettes
 	ld de, wOBPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	jr .done_copy
 
 .copy_MobileTradeOB1Palettes
 	ld hl, MobileTradeOB1Palettes
 	ld de, wOBPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, MobileTradeOB1Palettes
 	ld de, wOBPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 
 .done_copy
@@ -1438,8 +1438,8 @@ Function108b5a:
 	push af
 	ld a, $5
 	ldh [rSVBK], a
-	ld de, palred 18 + palgreen 31 + palblue 15
-	ld hl, wBGPals2 + 4 palettes
+	ld de, (1 << 0) * 18 + (1 << 5) * 31 + (1 << 10) * 15
+	ld hl, wBGPals2 + 4 * PALETTE_SIZE
 	ld c, $10
 .loop
 	ld a, e
@@ -1466,7 +1466,7 @@ Function108b78:
 	jr .load_pal
 
 .Orange:
-	ld de, palred 31 + palgreen 15 + palblue 1
+	ld de, (1 << 0) * 31 + (1 << 5) * 15 + (1 << 10) * 1
 .load_pal
 	ld a, e
 	ld [hli], a
@@ -1491,14 +1491,14 @@ Function108b98:
 	and $1
 	xor d
 	jr z, .asm_108bad
-	ld hl, Palette_108b98 + 1 palettes
+	ld hl, Palette_108b98 + 1 * PALETTE_SIZE
 	jr .asm_108bb0
 
 .asm_108bad
 	ld hl, Palette_108b98
 .asm_108bb0
-	ld de, wBGPals1 + 7 palettes
-	ld bc, 8 palettes
+	ld de, wBGPals1 + 7 * PALETTE_SIZE
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -1720,12 +1720,12 @@ LoadMobileAdapterPalette:
 	ld a, $7
 
 .asm_108d12
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld hl, MobileAdapterPalettes
 	call AddNTimes
 	ld a, BANK(wBGPals1)
-	ld de, wBGPals1 + 4 palettes
-	ld bc, 1 palettes
+	ld de, wBGPals1 + 4 * PALETTE_SIZE
+	ld bc, 1 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 

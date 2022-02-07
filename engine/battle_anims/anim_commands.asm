@@ -685,7 +685,7 @@ BattleAnimCmd_5GFX:
 rept 4
 	add hl, hl
 endr
-	ld de, vTiles0 tile BATTLEANIM_BASE_TILE
+	ld de, vTiles0 + LEN_2BPP_TILE * BATTLEANIM_BASE_TILE
 	add hl, de
 	ld a, [wBattleAnimByte]
 	call LoadBattleAnimGFX
@@ -794,14 +794,14 @@ BattleAnimCmd_BattlerGFX_1Row:
 	ld a, ($80 - 6) - BATTLEANIM_BASE_TILE
 	ld [hl], a
 
-	ld hl, vTiles0 tile ($80 - 6 - 7)
-	ld de, vTiles2 tile $06 ; Enemy feet start tile
-	ld a, 7 tiles ; Enemy pic height
+	ld hl, vTiles0 + LEN_2BPP_TILE * ($80 - 6 - 7)
+	ld de, vTiles2 + LEN_2BPP_TILE * $06 ; Enemy feet start tile
+	ld a, 7 * LEN_2BPP_TILE ; Enemy pic height
 	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 7 ; Copy 7x1 tiles
 	call .LoadFeet
-	ld de, vTiles2 tile $31 ; Player head start tile
-	ld a, 6 tiles ; Player pic height
+	ld de, vTiles2 + LEN_2BPP_TILE * $31 ; Player head start tile
+	ld a, 6 * LEN_2BPP_TILE ; Player pic height
 	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 6 ; Copy 6x1 tiles
 	call .LoadFeet
@@ -821,7 +821,7 @@ BattleAnimCmd_BattlerGFX_1Row:
 	ld e, l
 	ld d, h
 	pop hl
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	add hl, bc
 	pop af
 	dec a
@@ -848,14 +848,14 @@ BattleAnimCmd_BattlerGFX_2Row:
 	ld a, ($80 - 6 * 2) - BATTLEANIM_BASE_TILE
 	ld [hl], a
 
-	ld hl, vTiles0 tile ($80 - 6 * 2 - 7 * 2)
-	ld de, vTiles2 tile $05 ; Enemy feet start tile
-	ld a, 7 tiles ; Enemy pic height
+	ld hl, vTiles0 + LEN_2BPP_TILE * ($80 - 6 * 2 - 7 * 2)
+	ld de, vTiles2 + LEN_2BPP_TILE * $05 ; Enemy feet start tile
+	ld a, 7 * LEN_2BPP_TILE ; Enemy pic height
 	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 7 ; Copy 7x2 tiles
 	call .LoadHead
-	ld de, vTiles2 tile $31 ; Player head start tile
-	ld a, 6 tiles ; Player pic height
+	ld de, vTiles2 + LEN_2BPP_TILE * $31 ; Player head start tile
+	ld a, 6 * LEN_2BPP_TILE ; Player pic height
 	ld [wBattleAnimGFXTempPicHeight], a
 	ld a, 6 ; Copy 6x2 tiles
 	call .LoadHead
@@ -875,7 +875,7 @@ BattleAnimCmd_BattlerGFX_2Row:
 	ld e, l
 	ld d, h
 	pop hl
-	ld bc, 2 tiles
+	ld bc, 2 * LEN_2BPP_TILE
 	add hl, bc
 	pop af
 	dec a
@@ -908,7 +908,7 @@ BattleAnimCmd_Transform:
 	ld [wCurPartySpecies], a
 	ld hl, wBattleMonDVs
 	predef GetUnownLetter
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	predef GetMonFrontpic
 	jr .done
 
@@ -917,7 +917,7 @@ BattleAnimCmd_Transform:
 	ld [wCurPartySpecies], a
 	ld hl, wEnemyMonDVs
 	predef GetUnownLetter
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	predef GetMonBackpic
 
 .done
@@ -929,19 +929,19 @@ BattleAnimCmd_Transform:
 	ret
 
 BattleAnimCmd_UpdateActorPic:
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
-	ld hl, vTiles2 tile $00
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
 	ld b, 0
 	ld c, 7 * 7
 	call Request2bpp
 	ret
 
 .player
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld b, 0
 	ld c, 6 * 6
 	call Request2bpp
@@ -958,7 +958,7 @@ BattleAnimCmd_RaiseSub:
 
 GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 	ld hl, sScratch
-	ld bc, (7 * 7) tiles
+	ld bc, (7 * 7) * LEN_2BPP_TILE
 .loop
 	xor a
 	ld [hli], a
@@ -971,40 +971,40 @@ GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 	and a
 	jr z, .player
 
-	ld hl, MonsterSpriteGFX + 0 tiles
-	ld de, sScratch + (2 * 7 + 5) tiles
+	ld hl, MonsterSpriteGFX + 0 * LEN_2BPP_TILE
+	ld de, sScratch + (2 * 7 + 5) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 1 tiles
-	ld de, sScratch + (3 * 7 + 5) tiles
+	ld hl, MonsterSpriteGFX + 1 * LEN_2BPP_TILE
+	ld de, sScratch + (3 * 7 + 5) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 2 tiles
-	ld de, sScratch + (2 * 7 + 6) tiles
+	ld hl, MonsterSpriteGFX + 2 * LEN_2BPP_TILE
+	ld de, sScratch + (2 * 7 + 6) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 3 tiles
-	ld de, sScratch + (3 * 7 + 6) tiles
+	ld hl, MonsterSpriteGFX + 3 * LEN_2BPP_TILE
+	ld de, sScratch + (3 * 7 + 6) * LEN_2BPP_TILE
 	call .CopyTile
 
-	ld hl, vTiles2 tile $00
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
 	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 7 * 7
 	call Request2bpp
 	jr .done
 
 .player
-	ld hl, MonsterSpriteGFX + 4 tiles
-	ld de, sScratch + (2 * 6 + 4) tiles
+	ld hl, MonsterSpriteGFX + 4 * LEN_2BPP_TILE
+	ld de, sScratch + (2 * 6 + 4) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 5 tiles
-	ld de, sScratch + (3 * 6 + 4) tiles
+	ld hl, MonsterSpriteGFX + 5 * LEN_2BPP_TILE
+	ld de, sScratch + (3 * 6 + 4) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 6 tiles
-	ld de, sScratch + (2 * 6 + 5) tiles
+	ld hl, MonsterSpriteGFX + 6 * LEN_2BPP_TILE
+	ld de, sScratch + (2 * 6 + 5) * LEN_2BPP_TILE
 	call .CopyTile
-	ld hl, MonsterSpriteGFX + 7 tiles
-	ld de, sScratch + (3 * 6 + 5) tiles
+	ld hl, MonsterSpriteGFX + 7 * LEN_2BPP_TILE
+	ld de, sScratch + (3 * 6 + 5) * LEN_2BPP_TILE
 	call .CopyTile
 
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, sScratch
 	lb bc, BANK(GetSubstitutePic), 6 * 6
 	call Request2bpp
@@ -1017,7 +1017,7 @@ GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 	ret
 
 .CopyTile:
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(MonsterSpriteGFX)
 	call FarCopyBytes
 	ret
@@ -1040,7 +1040,7 @@ BattleAnimCmd_MinimizeOpp:
 
 GetMinimizePic:
 	ld hl, sScratch
-	ld bc, (7 * 7) tiles
+	ld bc, (7 * 7) * LEN_2BPP_TILE
 .loop
 	xor a
 	ld [hli], a
@@ -1053,17 +1053,17 @@ GetMinimizePic:
 	and a
 	jr z, .player
 
-	ld de, sScratch + (3 * 7 + 5) tiles
+	ld de, sScratch + (3 * 7 + 5) * LEN_2BPP_TILE
 	call CopyMinimizePic
-	ld hl, vTiles2 tile $00
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
 	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), 7 * 7
 	ret
 
 .player
-	ld de, sScratch + (3 * 6 + 4) tiles
+	ld de, sScratch + (3 * 6 + 4) * LEN_2BPP_TILE
 	call CopyMinimizePic
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, sScratch
 	lb bc, BANK(GetMinimizePic), 6 * 6
 	ret
@@ -1087,7 +1087,7 @@ BattleAnimCmd_Minimize:
 	xor a ; BANK(sScratch)
 	call OpenSRAM
 	call GetMinimizePic
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	call Request2bpp
 	call CloseSRAM
 
@@ -1139,14 +1139,14 @@ BattleAnimCmd_BeatUp:
 
 	ld hl, wBattleMonDVs
 	predef GetUnownLetter
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	predef GetMonFrontpic
 	jr .done
 
 .player
 	ld hl, wEnemyMonDVs
 	predef GetUnownLetter
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	predef GetMonBackpic
 
 .done
@@ -1434,8 +1434,8 @@ BattleAnim_SetOBPals:
 	push af
 	ld a, BANK(wOBPals1)
 	ldh [rSVBK], a
-	ld hl, wOBPals2 palette PAL_BATTLE_OB_GRAY
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
+	ld hl, wOBPals2 + PALETTE_SIZE * PAL_BATTLE_OB_GRAY
+	ld de, wOBPals1 + PALETTE_SIZE * PAL_BATTLE_OB_GRAY
 	ldh a, [rOBP0]
 	ld b, a
 	ld c, 2

@@ -56,7 +56,7 @@ LoadPokeComPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, PokeComPalette
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 
@@ -67,7 +67,7 @@ LoadBattleTowerInsidePalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, BattleTowerInsidePalette
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 
@@ -78,7 +78,7 @@ LoadIcePathPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, IcePathPalette
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 
@@ -89,7 +89,7 @@ LoadHousePalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, HousePalette
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 
@@ -100,7 +100,7 @@ LoadRadioTowerPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, RadioTowerPalette
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 
@@ -114,22 +114,22 @@ LoadMansionPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, MansionPalette1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
-	ld de, wBGPals1 palette PAL_BG_YELLOW
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_YELLOW
 	ld hl, MansionPalette2
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
-	ld de, wBGPals1 palette PAL_BG_WATER
-	ld hl, MansionPalette1 palette 6
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_WATER
+	ld hl, MansionPalette1 + PALETTE_SIZE * 6
+	ld bc, 1 * PALETTE_SIZE
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
-	ld de, wBGPals1 palette PAL_BG_ROOF
-	ld hl, MansionPalette1 palette 8
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_ROOF
+	ld hl, MansionPalette1 + PALETTE_SIZE * 8
+	ld bc, 1 * PALETTE_SIZE
 	call FarCopyWRAM
 	ret
 

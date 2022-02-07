@@ -60,7 +60,7 @@ EvolutionAnimation:
 	call .PlaceFrontpic
 
 	ld de, vTiles2
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld bc, 7 * 7
 	call Request2bpp
 

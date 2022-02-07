@@ -69,7 +69,7 @@ _CGB_BattleGrayscale:
 	ld c, 4
 	call CopyPalettes
 	ld hl, PalPacket_BattleGrayscale + 1
-	ld de, wBGPals1 palette PAL_BATTLE_BG_EXP
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BATTLE_BG_EXP
 	ld c, 4
 	call CopyPalettes
 	ld hl, PalPacket_BattleGrayscale + 1
@@ -143,8 +143,8 @@ _CGB_FinishBattleScreenLayout:
 	ld a, PAL_BATTLE_BG_TEXT
 	call ByteFill
 	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
-	ld bc, 6 palettes
+	ld de, wOBPals1 + PALETTE_SIZE * PAL_BATTLE_OB_GRAY
+	ld bc, 6 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	call ApplyAttrmap
@@ -157,8 +157,8 @@ Mobile_InitPartyMenuBGPal7:
 	jr nc, .not_mobile
 	ld hl, PartyMenuBGMobilePalette
 .not_mobile
-	ld de, wBGPals1 palette 7
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 7
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
@@ -169,8 +169,8 @@ InitPartyMenuBGPal0:
 	jr nc, .not_mobile
 	ld hl, PartyMenuBGMobilePalette
 .not_mobile
-	ld de, wBGPals1 palette 0
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 0
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
@@ -186,7 +186,7 @@ _CGB_PokegearPals:
 	ld hl, MalePokegearPals
 .got_pals
 	ld de, wBGPals1
-	ld bc, 6 palettes
+	ld bc, 6 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
@@ -211,8 +211,8 @@ _CGB_StatsScreenHPPals:
 	ld hl, ExpBarPalette
 	call LoadPalette_White_Col1_Col2_Black ; exp palette
 	ld hl, StatsScreenPagePals
-	ld de, wBGPals1 palette 3
-	ld bc, 3 palettes ; pink, green, and blue page palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 3
+	ld bc, 3 * PALETTE_SIZE ; pink, green, and blue page palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
@@ -277,8 +277,8 @@ _CGB_Pokedex:
 	call FillBoxCGB
 	call InitPartyMenuOBPals
 	ld hl, PokedexCursorPalette
-	ld de, wOBPals1 palette 7 ; green cursor palette
-	ld bc, 1 palettes
+	ld de, wOBPals1 + PALETTE_SIZE * 7 ; green cursor palette
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	call ApplyAttrmap
@@ -370,7 +370,7 @@ _CGB_PokedexUnownMode:
 _CGB_SlotMachine:
 	ld hl, SlotMachinePals
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
@@ -459,7 +459,7 @@ _CGB_GSIntro:
 	call LoadHLPaletteIntoDE
 	ld hl, .ShellderLaprasOBPals
 	ld de, wOBPals1
-	ld bc, 2 palettes
+	ld bc, 2 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
@@ -497,7 +497,7 @@ INCLUDE "gfx/intro/gs_shellder_lapras_ob.pal"
 _CGB_BetaPoker:
 	ld hl, BetaPokerPals
 	ld de, wBGPals1
-	ld bc, 5 palettes
+	ld bc, 5 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
@@ -508,7 +508,7 @@ _CGB_BetaPoker:
 _CGB_Diploma:
 	ld hl, DiplomaPalettes
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 
@@ -554,8 +554,8 @@ _CGB_Evolution:
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	ld hl, BattleObjectPals
-	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
-	ld bc, 6 palettes
+	ld de, wOBPals1 + PALETTE_SIZE * PAL_BATTLE_OB_GRAY
+	ld bc, 6 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
@@ -570,12 +570,12 @@ _CGB_Evolution:
 _CGB_GSTitleScreen:
 	ld hl, UnusedGSTitleBGPals
 	ld de, wBGPals1
-	ld bc, 5 palettes
+	ld bc, 5 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ld hl, UnusedGSTitleOBPals
 	ld de, wOBPals1
-	ld bc, 2 palettes
+	ld bc, 2 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ld a, SCGB_DIPLOMA
@@ -604,9 +604,9 @@ _CGB_UnownPuzzle:
 	ld a, BANK(wOBPals1)
 	ldh [rSVBK], a
 	ld hl, wOBPals1
-	ld a, LOW(palred 31 + palgreen 0 + palblue 0)
+	ld a, LOW(palred 31 + (1 << 5) * 0 + (1 << 10) * 0)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 0 + palblue 0)
+	ld a, HIGH(palred 31 + (1 << 5) * 0 + (1 << 10) * 0)
 	ld [hl], a
 	pop af
 	ldh [rSVBK], a
@@ -783,7 +783,7 @@ _CGB_PackPals:
 
 .got_gender
 	ld de, wBGPals1
-	ld bc, 8 palettes ; 6 palettes?
+	ld bc, 8 * PALETTE_SIZE ; 6 palettes?
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
@@ -880,7 +880,7 @@ _CGB_GamefreakLogo:
 	ld de, wOBPals1
 	call LoadHLPaletteIntoDE
 	ld hl, .GamefreakDittoPalette
-	ld de, wOBPals1 palette 1
+	ld de, wOBPals1 + PALETTE_SIZE * 1
 	call LoadHLPaletteIntoDE
 	call WipeAttrmap
 	call ApplyAttrmap
@@ -915,10 +915,10 @@ _CGB_TradeTube:
 	call CopyFourPalettes
 	ld hl, PartyMenuOBPals
 	ld de, wOBPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
-	ld de, wOBPals1 palette 7
+	ld de, wOBPals1 + PALETTE_SIZE * 7
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
@@ -939,7 +939,7 @@ _CGB_TrainerOrMonFrontpicPals:
 _CGB_MysteryGift:
 	ld hl, .MysteryGiftPalettes
 	ld de, wBGPals1
-	ld bc, 2 palettes
+	ld bc, 2 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
@@ -973,7 +973,7 @@ INCLUDE "gfx/mystery_gift/mystery_gift.pal"
 GS_CGB_MysteryGift: ; unreferenced
 	ld hl, .MysteryGiftPalette
 	ld de, wBGPals1
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals

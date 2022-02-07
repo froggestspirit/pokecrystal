@@ -286,7 +286,7 @@ GetMemIconGFX:
 	ld a, [wCurIconTile]
 GetIconGFX:
 	call GetIcon_a
-	ld de, 8 tiles
+	ld de, 8 * LEN_2BPP_TILE
 	add hl, de
 	ld de, HeldItemIcons
 	lb bc, BANK(HeldItemIcons), 2

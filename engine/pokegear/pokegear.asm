@@ -118,7 +118,7 @@ Pokegear_LoadGFX:
 	ld a, BANK(TownMapGFX)
 	call FarDecompress
 	ld hl, PokegearGFX
-	ld de, vTiles2 tile $30
+	ld de, vTiles2 + LEN_2BPP_TILE * $30
 	ld a, BANK(PokegearGFX)
 	call FarDecompress
 	ld hl, PokegearSpritesGFX
@@ -139,23 +139,23 @@ Pokegear_LoadGFX:
 	ld a, b
 	; standing sprite
 	push af
-	ld de, vTiles0 tile $10
-	ld bc, 4 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $10
+	ld bc, 4 * LEN_2BPP_TILE
 	call FarCopyBytes
 	pop af
 	pop hl
 	; walking sprite
-	ld de, 12 tiles
+	ld de, 12 * LEN_2BPP_TILE
 	add hl, de
-	ld de, vTiles0 tile $14
-	ld bc, 4 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $14
+	ld bc, 4 * LEN_2BPP_TILE
 	call FarCopyBytes
 	ret
 
 .ssaqua
 	ld hl, FastShipGFX
-	ld de, vTiles0 tile $10
-	ld bc, 8 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $10
+	ld bc, 8 * LEN_2BPP_TILE
 	call CopyBytes
 	ret
 
@@ -2035,7 +2035,7 @@ _FlyMap:
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
-	ld hl, vTiles2 tile $30
+	ld hl, vTiles2 + LEN_2BPP_TILE * $30
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FlyMap
@@ -2343,11 +2343,11 @@ Pokedex_GetArea:
 	ld a, $1
 	ldh [hInMenu], a
 	ld de, PokedexNestIconGFX
-	ld hl, vTiles0 tile $7f
+	ld hl, vTiles0 + LEN_2BPP_TILE * $7f
 	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request2bpp
 	call .GetPlayerOrFastShipIcon
-	ld hl, vTiles0 tile $78
+	ld hl, vTiles0 + LEN_2BPP_TILE * $78
 	ld c, 4
 	call Request2bpp
 	call LoadTownMapGFX
@@ -2734,15 +2734,15 @@ TownMapPlayerIcon:
 	push af
 	farcall GetPlayerIcon
 ; Standing icon
-	ld hl, vTiles0 tile $10
+	ld hl, vTiles0 + LEN_2BPP_TILE * $10
 	ld c, 4 ; # tiles
 	call Request2bpp
 ; Walking icon
-	ld hl, 12 tiles
+	ld hl, 12 * LEN_2BPP_TILE
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, vTiles0 tile $14
+	ld hl, vTiles0 + LEN_2BPP_TILE * $14
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
@@ -2807,7 +2807,7 @@ EntireFlyMap: ; unreferenced
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
-	ld hl, vTiles2 tile $30
+	ld hl, vTiles2 + LEN_2BPP_TILE * $30
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FillKantoMap

@@ -597,7 +597,7 @@ Function4a449: ; unreferenced
 
 Function4a485:
 	ld de, MobileMenuGFX
-	ld hl, vTiles2 tile $00
+	ld hl, vTiles2 + LEN_2BPP_TILE * $00
 	lb bc, BANK(MobileMenuGFX), 13
 	call Get2bpp
 	ret

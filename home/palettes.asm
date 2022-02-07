@@ -32,7 +32,7 @@ ForceUpdateCGBPals::
 	ld c, LOW(rBGPD)
 	ld b, 8 / 2
 .bgp
-rept (1 palettes) * 2
+rept (1 * PALETTE_SIZE) * 2
 	ld a, [hli]
 	ldh [c], a
 endr
@@ -48,7 +48,7 @@ endr
 	ld c, LOW(rOBPD)
 	ld b, 8 / 2
 .obp
-rept (1 palettes) * 2
+rept (1 * PALETTE_SIZE) * 2
 	ld a, [hli]
 	ldh [c], a
 endr
@@ -176,8 +176,8 @@ DmgToCgbObjPal0::
 	ld a, BANK(wOBPals2)
 	ldh [rSVBK], a
 
-	ld hl, wOBPals2 palette 0
-	ld de, wOBPals1 palette 0
+	ld hl, wOBPals2 + PALETTE_SIZE * 0
+	ld de, wOBPals1 + PALETTE_SIZE * 0
 	ldh a, [rOBP0]
 	ld b, a
 	ld c, 1
@@ -213,8 +213,8 @@ DmgToCgbObjPal1::
 	ld a, BANK(wOBPals2)
 	ldh [rSVBK], a
 
-	ld hl, wOBPals2 palette 1
-	ld de, wOBPals1 palette 1
+	ld hl, wOBPals2 + PALETTE_SIZE * 1
+	ld de, wOBPals1 + PALETTE_SIZE * 1
 	ldh a, [rOBP1]
 	ld b, a
 	ld c, 1
@@ -314,7 +314,7 @@ ReloadSpritesNoPalettes::
 	ld a, BANK(wBGPals2)
 	ldh [rSVBK], a
 	ld hl, wBGPals2
-	ld bc, (8 palettes) + (2 palettes)
+	ld bc, (8 * PALETTE_SIZE) + (2 * PALETTE_SIZE)
 	xor a
 	call ByteFill
 	pop af

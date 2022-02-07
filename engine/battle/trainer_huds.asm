@@ -224,7 +224,7 @@ LoadTrainerHudOAM:
 
 LoadBallIconGFX:
 	ld de, .gfx
-	ld hl, vTiles0 tile $31
+	ld hl, vTiles0 + LEN_2BPP_TILE * $31
 	lb bc, BANK(LoadBallIconGFX), 4
 	call Get2bppViaHDMA
 	ret

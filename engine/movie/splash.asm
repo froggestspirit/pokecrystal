@@ -76,12 +76,12 @@ GameFreakPresentsInit:
 
 	ld hl, vTiles0
 	ld de, wDecompressScratch
-	lb bc, 1, 8 tiles
+	lb bc, 1, 8 * LEN_2BPP_TILE
 	call Request2bpp
 
 	ld hl, vTiles1
-	ld de, wDecompressScratch + $80 tiles
-	lb bc, 1, 8 tiles
+	ld de, wDecompressScratch + $80 * LEN_2BPP_TILE
+	lb bc, 1, 8 * LEN_2BPP_TILE
 	call Request2bpp
 
 	pop af

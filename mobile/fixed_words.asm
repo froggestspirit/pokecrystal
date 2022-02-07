@@ -2860,7 +2860,7 @@ Function11d323:
 	ldh [rSVBK], a
 	ld hl, Palette_11d33a
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a

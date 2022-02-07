@@ -133,12 +133,12 @@ _TitleScreen:
 
 	ld hl, TitleScreenPalettes
 	ld de, wBGPals1
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	ld hl, TitleScreenPalettes
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af

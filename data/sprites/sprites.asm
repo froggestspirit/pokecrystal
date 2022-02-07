@@ -1,7 +1,7 @@
 overworld_sprite: MACRO
 ; pointer, length, type, palette
 	dw \1
-	db \2 tiles, BANK(\1), \3, \4
+	db \2 * LEN_2BPP_TILE, BANK(\1), \3, \4
 ENDM
 
 OverworldSprites:

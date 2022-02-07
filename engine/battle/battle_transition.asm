@@ -38,7 +38,7 @@ DoBattleTransition:
 	ldh [rSVBK], a
 
 	ld hl, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	xor a
 	call ByteFill
 
@@ -100,7 +100,7 @@ LoadTrainerBattlePokeballTiles:
 ; Load the tiles used in the Pokeball Graphic that fills the screen
 ; at the start of every Trainer battle.
 	ld de, TrainerBattlePokeballTiles
-	ld hl, vTiles0 tile BATTLETRANSITION_SQUARE
+	ld hl, vTiles0 + LEN_2BPP_TILE * BATTLETRANSITION_SQUARE
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -111,7 +111,7 @@ LoadTrainerBattlePokeballTiles:
 	ldh [rVBK], a
 
 	ld de, TrainerBattlePokeballTiles
-	ld hl, vTiles3 tile BATTLETRANSITION_SQUARE
+	ld hl, vTiles3 + LEN_2BPP_TILE * BATTLETRANSITION_SQUARE
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -127,7 +127,7 @@ ConvertTrainerBattlePokeballTilesTo2bpp:
 	ldh [rSVBK], a
 	push hl
 	ld hl, wDecompressScratch
-	ld bc, $28 tiles
+	ld bc, $28 * LEN_2BPP_TILE
 
 .loop
 	ld [hl], -1
@@ -664,12 +664,12 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ldh [rSVBK], a
 	call .copypals
 	push hl
-	ld de, wBGPals1 palette PAL_BG_TEXT
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop hl
-	ld de, wBGPals2 palette PAL_BG_TEXT
-	ld bc, 1 palettes
+	ld de, wBGPals2 + PALETTE_SIZE * PAL_BG_TEXT
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
@@ -683,21 +683,21 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ret
 
 .copypals
-	ld de, wBGPals1 palette PAL_BG_TEXT
+	ld de, wBGPals1 + PALETTE_SIZE * PAL_BG_TEXT
 	call .copy
-	ld de, wBGPals2 palette PAL_BG_TEXT
+	ld de, wBGPals2 + PALETTE_SIZE * PAL_BG_TEXT
 	call .copy
-	ld de, wOBPals1 palette PAL_OW_TREE
+	ld de, wOBPals1 + PALETTE_SIZE * PAL_OW_TREE
 	call .copy
-	ld de, wOBPals2 palette PAL_OW_TREE
+	ld de, wOBPals2 + PALETTE_SIZE * PAL_OW_TREE
 	call .copy
-	ld de, wOBPals1 palette PAL_OW_ROCK
+	ld de, wOBPals1 + PALETTE_SIZE * PAL_OW_ROCK
 	call .copy
-	ld de, wOBPals2 palette PAL_OW_ROCK
+	ld de, wOBPals2 + PALETTE_SIZE * PAL_OW_ROCK
 
 .copy
 	push hl
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	pop hl
 	ret

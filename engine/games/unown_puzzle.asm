@@ -19,11 +19,11 @@ _UnownPuzzle:
 	xor a
 	call ByteFill
 	ld hl, UnownPuzzleCursorGFX
-	ld de, vTiles0 tile $e0
-	ld bc, 4 tiles
+	ld de, vTiles0 + LEN_2BPP_TILE * $e0
+	ld bc, 4 * LEN_2BPP_TILE
 	call CopyBytes
 	ld hl, UnownPuzzleStartCancelLZ
-	ld de, vTiles0 tile $ed
+	ld de, vTiles0 + LEN_2BPP_TILE * $ed
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
@@ -626,11 +626,11 @@ ConvertLoadedPuzzlePieces:
 	push hl
 	call .EnlargePuzzlePieceTiles
 	pop hl
-	ld bc, 1 tiles / 2
+	ld bc, 1 * LEN_2BPP_TILE / 2
 	add hl, bc
 	call .EnlargePuzzlePieceTiles
 	pop hl
-	ld bc, 6 tiles
+	ld bc, 6 * LEN_2BPP_TILE
 	add hl, bc
 	pop bc
 	dec b
@@ -701,7 +701,7 @@ ConvertLoadedPuzzlePieces:
 	dec c
 	jr nz, .loop3
 	pop hl
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	add hl, bc
 	pop bc
 	dec c
@@ -757,7 +757,7 @@ endr
 	push de
 	push hl
 
-	ld b, 1 tiles
+	ld b, 1 * LEN_2BPP_TILE
 .loop3
 	ld a, [de]
 	or [hl]
@@ -767,13 +767,13 @@ endr
 	jr nz, .loop3
 
 	pop hl
-	ld de, 3 tiles
+	ld de, 3 * LEN_2BPP_TILE
 	add hl, de
 	pop de
 	dec c
 	jr nz, .loop2
 
-	ld bc, 24 tiles
+	ld bc, 24 * LEN_2BPP_TILE
 	add hl, bc
 	pop bc
 	dec b
@@ -781,14 +781,14 @@ endr
 	ret
 
 PuzzlePieceBorderData:
-	dw .TileBordersGFX + 0 tiles, vTiles0 tile $00
-	dw .TileBordersGFX + 1 tiles, vTiles0 tile $01
-	dw .TileBordersGFX + 2 tiles, vTiles0 tile $02
-	dw .TileBordersGFX + 3 tiles, vTiles0 tile $0c
-	dw .TileBordersGFX + 4 tiles, vTiles0 tile $0e
-	dw .TileBordersGFX + 5 tiles, vTiles0 tile $18
-	dw .TileBordersGFX + 6 tiles, vTiles0 tile $19
-	dw .TileBordersGFX + 7 tiles, vTiles0 tile $1a
+	dw .TileBordersGFX + 0 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $00
+	dw .TileBordersGFX + 1 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $01
+	dw .TileBordersGFX + 2 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $02
+	dw .TileBordersGFX + 3 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $0c
+	dw .TileBordersGFX + 4 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $0e
+	dw .TileBordersGFX + 5 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $18
+	dw .TileBordersGFX + 6 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $19
+	dw .TileBordersGFX + 7 * LEN_2BPP_TILE, vTiles0 + LEN_2BPP_TILE * $1a
 
 .TileBordersGFX:
 INCBIN "gfx/unown_puzzle/tile_borders.2bpp"

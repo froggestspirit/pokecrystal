@@ -223,7 +223,7 @@ Function16c943:
 	ld a, $5
 	ldh [rSVBK], a
 	ld a, $ff
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld hl, wBGPals1
 	call ByteFill
 	pop af
@@ -645,7 +645,7 @@ Function16cbd1:
 	ld bc, 2
 	ld hl, Unknown_16cfa3
 	call AddNTimes
-	ld de, wBGPals1 palette 1 color 2
+	ld de, wBGPals1 + PALETTE_SIZE * 1 + PAL_COLOR_SIZE * 2
 	ld bc, PAL_COLOR_SIZE
 	ld a, $5
 	call FarCopyWRAM
@@ -676,18 +676,18 @@ Function16cc18:
 
 Function16cc25:
 	ld hl, Unknown_16cfa9
-	ld de, wBGPals1 + 1 palettes
+	ld de, wBGPals1 + 1 * PALETTE_SIZE
 	call .CopyPal
 	ld hl, Unknown_16cfb1
 	ld de, wOBPals1
 	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, wOBPals1 + 1 palettes
+	ld de, wOBPals1 + 1 * PALETTE_SIZE
 	call .CopyPal
 	ret
 
 .CopyPal:
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	ld a, $5
 	jp FarCopyWRAM
 

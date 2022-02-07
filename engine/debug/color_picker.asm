@@ -156,19 +156,19 @@ DebugColor_InitVRAM:
 
 DebugColor_LoadGFX:
 	ld hl, DebugColor_GFX
-	ld de, vTiles2 tile DEBUGTEST_TICKS_1
-	ld bc, 22 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * DEBUGTEST_TICKS_1
+	ld bc, 22 * LEN_2BPP_TILE
 	call CopyBytes
 
 	ld hl, DebugColor_UpArrowGFX
 	ld de, vTiles0
-	ld bc, 1 tiles
+	ld bc, 1 * LEN_2BPP_TILE
 	call CopyBytes
 
 ; Invert the font colors.
 	call LoadStandardFont
 	ld hl, vTiles1
-	ld bc, $80 tiles
+	ld bc, $80 * LEN_2BPP_TILE
 .loop
 	ld a, [hl]
 	xor $ff
@@ -191,13 +191,13 @@ DebugColor_InitPalettes:
 
 	ld hl, Palette_DebugBG
 	ld de, wBGPals2
-	ld bc, 16 palettes
+	ld bc, 16 * PALETTE_SIZE
 	call CopyBytes
 
 	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ldh [rBGPI], a
 	ld hl, Palette_DebugBG
-	ld c, 8 palettes
+	ld c, 8 * PALETTE_SIZE
 	xor a
 .bg_loop
 	ldh [rBGPD], a
@@ -207,20 +207,20 @@ DebugColor_InitPalettes:
 	ld a, 1 << rOBPI_AUTO_INCREMENT
 	ldh [rOBPI], a
 	ld hl, Palette_DebugOB
-	ld c, 8 palettes
+	ld c, 8 * PALETTE_SIZE
 .ob_loop
 	ld a, [hli]
 	ldh [rOBPD], a
 	dec c
 	jr nz, .ob_loop
 
-	ld a, LOW(palred 20 + palgreen 20 + palblue 20)
+	ld a, LOW(palred 20 + (1 << 5) * 20 + (1 << 10) * 20)
 	ld [wDebugLightColor + 0], a
-	ld a, HIGH(palred 20 + palgreen 20 + palblue 20)
+	ld a, HIGH(palred 20 + (1 << 5) * 20 + (1 << 10) * 20)
 	ld [wDebugLightColor + 1], a
-	ld a, LOW(palred 10 + palgreen 10 + palblue 10)
+	ld a, LOW(palred 10 + (1 << 5) * 10 + (1 << 10) * 10)
 	ld [wDebugDarkColor + 0], a
-	ld a, HIGH(palred 10 + palgreen 10 + palblue 10)
+	ld a, HIGH(palred 10 + (1 << 5) * 10 + (1 << 10) * 10)
 	ld [wDebugDarkColor + 1], a
 
 	pop af
@@ -339,7 +339,7 @@ DebugColor_InitScreen:
 	ld [wBoxAlignment], a
 	hlcoord 12, 3
 	call _PrepMonFrontpic
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	predef GetMonBackpic
 	ld a, $31
 	ldh [hGraphicStartTile], a
@@ -1086,7 +1086,7 @@ TilesetColorPicker: ; unreferenced
 	xor a
 	ldh [hBGMapMode], a
 	ld de, DebugColor_GFX
-	ld hl, vTiles2 tile DEBUGTEST_TICKS_1
+	ld hl, vTiles2 + LEN_2BPP_TILE * DEBUGTEST_TICKS_1
 	lb bc, BANK(DebugColor_GFX), 22
 	call Request2bpp
 	ld de, DebugColor_UpArrowGFX
@@ -1176,7 +1176,7 @@ DebugTileset_LoadPalettes:
 	ld de, wBGPals1
 	add hl, de
 	ld de, wDebugPalette
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	ld de, wDebugPalette
 	call DebugColor_CalculateRGB
@@ -1222,10 +1222,10 @@ DebugColorMain2: ; unreferenced
 
 	ld hl, wBGPals2
 	ld a, [wDebugTilesetCurPalette]
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call AddNTimes
 	ld de, wDebugPalette
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 
 	pop af
@@ -1254,12 +1254,12 @@ DebugTileset_UpdatePalettes:
 
 	ld hl, wBGPals2
 	ld a, [wDebugTilesetCurPalette]
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, wDebugPalette
-	ld bc, 1 palettes
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 
 	hlcoord 1, 0

@@ -119,19 +119,19 @@ _SlotMachine:
 	call ByteFill
 
 	ld hl, Slots2LZ
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Decompress
 
 	ld hl, Slots3LZ
-	ld de, vTiles0 tile $40
+	ld de, vTiles0 + LEN_2BPP_TILE * $40
 	call Decompress
 
 	ld hl, Slots1LZ
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	call Decompress
 
 	ld hl, Slots2LZ
-	ld de, vTiles2 tile $25
+	ld de, vTiles2 + LEN_2BPP_TILE * $25
 	call Decompress
 
 	ld hl, SlotsTilemap

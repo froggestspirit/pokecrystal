@@ -18,12 +18,12 @@ _UnownPrinter:
 	call ClearTilemap
 
 	ld de, UnownDexATile
-	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_A
+	ld hl, vTiles0 + LEN_2BPP_TILE * UNOWNSTAMP_BOLD_A
 	lb bc, BANK(UnownDexATile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
-	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_B
+	ld hl, vTiles0 + LEN_2BPP_TILE * UNOWNSTAMP_BOLD_B
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
@@ -148,7 +148,7 @@ _UnownPrinter:
 	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	farcall RotateUnownFrontpic
 	ret
 
@@ -182,10 +182,10 @@ _UnownPrinter:
 	xor a ; sScratch
 	call OpenSRAM
 	ld hl, sScratch
-	ld bc, $31 tiles
+	ld bc, $31 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
-	ld hl, vTiles2 tile $31
+	ld hl, vTiles2 + LEN_2BPP_TILE * $31
 	ld de, sScratch
 	ld c, $31
 	ldh a, [hROMBank]

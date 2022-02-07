@@ -1,8 +1,8 @@
 emote: MACRO
 ; graphics pointer, length, starting tile
 	dw \1
-	db \2 tiles, BANK(\1)
-	dw vTiles0 tile \3
+	db \2 * LEN_2BPP_TILE, BANK(\1)
+	dw vTiles0 + LEN_2BPP_TILE * \3
 ENDM
 
 Emotes:

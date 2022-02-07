@@ -1,6 +1,6 @@
 Function115d99:
 	ld de, MobileDialingGFX
-	ld hl, vTiles0 tile $60
+	ld hl, vTiles0 + LEN_2BPP_TILE * $60
 	lb bc, BANK(MobileDialingGFX), 20
 	call Get2bpp
 	xor a
@@ -490,13 +490,13 @@ Function116294:
 	push af
 	ld a, $5
 	ldh [rSVBK], a
-	ld hl, wBGPals1 palette 6
+	ld hl, wBGPals1 + PALETTE_SIZE * 6
 	ld de, wc320
-	ld bc, 2 palettes
+	ld bc, 2 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, PichuBorderMobileBGPalettes
-	ld de, wBGPals1 palette 7
-	ld bc, 1 palettes
+	ld de, wBGPals1 + PALETTE_SIZE * 7
+	ld bc, 1 * PALETTE_SIZE
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -515,8 +515,8 @@ Function1162cb:
 	ld a, $5
 	ldh [rSVBK], a
 	ld hl, PichuBorderMobileOBPalettes
-	ld de, wOBPals1 + 2 palettes
-	ld bc, 6 palettes
+	ld de, wOBPals1 + 2 * PALETTE_SIZE
+	ld bc, 6 * PALETTE_SIZE
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -619,7 +619,7 @@ Function11636e:
 	ldh [rSVBK], a
 	ld hl, wBGPals2
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a

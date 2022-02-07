@@ -1,6 +1,6 @@
 SECTION "Scratch", SRAM
 
-sScratch:: ds $60 tiles
+sScratch:: ds $60 * LEN_2BPP_TILE
 
 
 SECTION "SRAM Bank 0", SRAM

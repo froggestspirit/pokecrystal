@@ -8,10 +8,10 @@ LoadMapGroupRoof::
 	cp -1
 	ret z
 	ld hl, Roofs
-	ld bc, ROOF_LENGTH tiles
+	ld bc, ROOF_LENGTH * LEN_2BPP_TILE
 	call AddNTimes
-	ld de, vTiles2 tile $0a
-	ld bc, ROOF_LENGTH tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $0a
+	ld bc, ROOF_LENGTH * LEN_2BPP_TILE
 	call CopyBytes
 	ret
 

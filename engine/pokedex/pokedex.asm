@@ -830,7 +830,7 @@ Pokedex_UpdateUnownMode:
 
 .decompress
 	ld hl, PokedexLZ
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	lb bc, BANK(PokedexLZ), 58
 	call DecompressRequest2bpp
 
@@ -2312,7 +2312,7 @@ Pokedex_BlackOutBG:
 	ld a, BANK(wBGPals1)
 	ldh [rSVBK], a
 	ld hl, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	xor a
 	call ByteFill
 	pop af
@@ -2400,19 +2400,19 @@ Pokedex_LoadAnyFootprint:
 	push hl
 	ld e, l
 	ld d, h
-	ld hl, vTiles2 tile $62
+	ld hl, vTiles2 + LEN_2BPP_TILE * $62
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 	pop hl
 
 	; Whoever was editing footprints forgot to fix their
 	; tile editor. Now each bottom half is 8 tiles off.
-	ld de, 8 tiles
+	ld de, 8 * LEN_2BPP_TILE
 	add hl, de
 
 	ld e, l
 	ld d, h
-	ld hl, vTiles2 tile $64
+	ld hl, vTiles2 + LEN_2BPP_TILE * $64
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 
@@ -2421,13 +2421,13 @@ Pokedex_LoadAnyFootprint:
 Pokedex_LoadGFX:
 	call DisableLCD
 	ld hl, vTiles2
-	ld bc, $31 tiles
+	ld bc, $31 * LEN_2BPP_TILE
 	xor a
 	call ByteFill
 	call Pokedex_LoadInvertedFont
 	call LoadFontsExtra
-	ld hl, vTiles2 tile $60
-	ld bc, $20 tiles
+	ld hl, vTiles2 + LEN_2BPP_TILE * $60
+	ld bc, $20 * LEN_2BPP_TILE
 	call Pokedex_InvertTiles
 	call Pokedex_CheckSGB
 	jr nz, .LoadPokedexLZ
@@ -2436,7 +2436,7 @@ Pokedex_LoadGFX:
 
 .LoadPokedexLZ:
 	ld hl, PokedexLZ
-	ld de, vTiles2 tile $31
+	ld de, vTiles2 + LEN_2BPP_TILE * $31
 	call Decompress
 
 .LoadPokedexSlowpokeLZ:
@@ -2451,7 +2451,7 @@ Pokedex_LoadGFX:
 Pokedex_LoadInvertedFont:
 	call LoadStandardFont
 	ld hl, vTiles1
-	ld bc, $80 tiles
+	ld bc, $80 * LEN_2BPP_TILE
 
 Pokedex_InvertTiles:
 .loop
@@ -2484,14 +2484,14 @@ Pokedex_LoadUnownFont:
 	ld hl, UnownFont
 	; sScratch + $188 was the address of sDecompressBuffer in pokegold
 	ld de, sScratch + $188
-	ld bc, 39 tiles
+	ld bc, 39 * LEN_2BPP_TILE
 	ld a, BANK(UnownFont)
 	call FarCopyBytes
 	ld hl, sScratch + $188
-	ld bc, (NUM_UNOWN + 1) tiles
+	ld bc, (NUM_UNOWN + 1) * LEN_2BPP_TILE
 	call Pokedex_InvertTiles
 	ld de, sScratch + $188
-	ld hl, vTiles2 tile FIRST_UNOWN_CHAR
+	ld hl, vTiles2 + LEN_2BPP_TILE * FIRST_UNOWN_CHAR
 	lb bc, BANK(Pokedex_LoadUnownFont), NUM_UNOWN + 1
 	call Request2bpp
 	call CloseSRAM
@@ -2510,7 +2510,7 @@ Pokedex_LoadUnownFrontpicTiles:
 	ld a, UNOWN
 	ld [wCurPartySpecies], a
 	call GetBaseData
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	predef GetMonFrontpic
 	pop af
 	ld [wUnownLetter], a

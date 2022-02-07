@@ -11,13 +11,13 @@ LoadFishingGFX:
 	ld de, KrisFishingGFX
 .got_gender
 
-	ld hl, vTiles0 tile $02
+	ld hl, vTiles0 + LEN_2BPP_TILE * $02
 	call .LoadGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles0 + LEN_2BPP_TILE * $06
 	call .LoadGFX
-	ld hl, vTiles0 tile $0a
+	ld hl, vTiles0 + LEN_2BPP_TILE * $0a
 	call .LoadGFX
-	ld hl, vTiles0 tile $fc
+	ld hl, vTiles0 + LEN_2BPP_TILE * $fc
 	call .LoadGFX
 
 	pop af
@@ -29,7 +29,7 @@ LoadFishingGFX:
 	push de
 	call Get2bpp
 	pop de
-	ld hl, 2 tiles
+	ld hl, 2 * LEN_2BPP_TILE
 	add hl, de
 	ld d, h
 	ld e, l

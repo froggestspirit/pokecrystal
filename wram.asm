@@ -862,7 +862,7 @@ SECTION UNION "Overworld Map", WRAM0
 
 ; GB Printer data
 wGameboyPrinterRAM::
-wGameboyPrinter2bppSource:: ds 40 tiles
+wGameboyPrinter2bppSource:: ds 40 * LEN_2BPP_TILE
 wGameboyPrinter2bppSourceEnd::
 wUnusedGameboyPrinterSafeCancelFlag:: db
 wPrinterRowIndex:: db
@@ -1090,7 +1090,7 @@ SECTION UNION "Overworld Map", WRAM0
 	ds $200
 
 ; blank credits tile buffer
-wCreditsBlankFrame2bpp:: ds 4 * 4 tiles
+wCreditsBlankFrame2bpp:: ds 4 * 4 * LEN_2BPP_TILE
 wCreditsBlankFrame2bppEnd::
 
 
@@ -1466,7 +1466,7 @@ wcf44:: db
 wcf45:: db
 
 NEXTU
-wTileAnimBuffer:: ds 1 tiles
+wTileAnimBuffer:: ds 1 * LEN_2BPP_TILE
 ENDU
 
 ; link data
@@ -1937,8 +1937,8 @@ wWhichBoxToPrint:: db
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
 
 ; Unown printing
-wPrintedUnownTileSource:: ds 1 tiles
-wPrintedUnownTileDest:: ds 1 tiles
+wPrintedUnownTileSource:: ds 1 * LEN_2BPP_TILE
+wPrintedUnownTileDest:: ds 1 * LEN_2BPP_TILE
 
 
 SECTION UNION "Miscellaneous WRAM 1", WRAMX
@@ -3477,10 +3477,10 @@ SECTION "GBC Video", WRAMX, ALIGN[8]
 
 ; eight 4-color palettes each
 wGBCPalettes:: ; used only for BANK(wGBCPalettes)
-wBGPals1:: ds 8 palettes
-wOBPals1:: ds 8 palettes
-wBGPals2:: ds 8 palettes
-wOBPals2:: ds 8 palettes
+wBGPals1:: ds 8 * PALETTE_SIZE
+wOBPals1:: ds 8 * PALETTE_SIZE
+wBGPals2:: ds 8 * PALETTE_SIZE
+wOBPals2:: ds 8 * PALETTE_SIZE
 
 wLYOverrides:: ds SCREEN_HEIGHT_PX
 wLYOverridesEnd::
@@ -3599,8 +3599,8 @@ wScratchTilemap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 wScratchAttrmap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 NEXTU
-wDecompressScratch:: ds $80 tiles
-wDecompressEnemyFrontpic:: ds $80 tiles
+wDecompressScratch:: ds $80 * LEN_2BPP_TILE
+wDecompressEnemyFrontpic:: ds $80 * LEN_2BPP_TILE
 
 NEXTU
 ; unidentified uses

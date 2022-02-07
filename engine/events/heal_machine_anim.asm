@@ -85,7 +85,7 @@ ENDM
 .LoadGFX:
 	call .LoadPalettes
 	ld de, .HealMachineGFX
-	ld hl, vTiles0 tile $7c
+	ld hl, vTiles0 + LEN_2BPP_TILE * $7c
 	lb bc, BANK(.HealMachineGFX), 2
 	call Request2bpp
 	ret
@@ -163,8 +163,8 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 
 .cgb
 	ld hl, .palettes
-	ld de, wOBPals2 palette PAL_OW_TREE
-	ld bc, 1 palettes
+	ld de, wOBPals2 + PALETTE_SIZE * PAL_OW_TREE
+	ld bc, 1 * PALETTE_SIZE
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 	ld a, TRUE
@@ -200,7 +200,7 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 	ld a, BANK(wOBPals2)
 	ldh [rSVBK], a
 
-	ld hl, wOBPals2 palette PAL_OW_TREE
+	ld hl, wOBPals2 + PALETTE_SIZE * PAL_OW_TREE
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]

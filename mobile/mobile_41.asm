@@ -1007,20 +1007,20 @@ Stubbed_Function106462:
 
 Function106464::
 	ld de, FontsExtra_SolidBlackGFX
-	ld hl, vTiles2 tile "■" ; $60
+	ld hl, vTiles2 + LEN_2BPP_TILE * "■" ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get2bpp
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, vTiles2 tile "▲" ; $61
+	ld hl, vTiles2 + LEN_2BPP_TILE * "▲" ; $61
 	lb bc, BANK(FontsExtra2_UpArrowGFX), 1
 	call Get2bpp
 	ld de, MobileDialingFrameGFX
-	ld hl, vTiles2 tile "☎" ; $62
+	ld hl, vTiles2 + LEN_2BPP_TILE * "☎" ; $62
 	ld c, 9
 	ld b, BANK(MobileDialingFrameGFX)
 	call Get2bpp
 	ld de, $40b0
-	ld hl, vTiles2 tile $6b
+	ld hl, vTiles2 + LEN_2BPP_TILE * $6b
 	ld b, $0f ; no graphics at 0f:40b0; JP leftover???
 	call Get2bpp
 	farcall LoadFrame
@@ -1034,11 +1034,11 @@ Function10649b: ; unreferenced
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, vTiles2 tile "┌" ; $79
+	ld hl, vTiles2 + LEN_2BPP_TILE * "┌" ; $79
 	ld c, 6 ; "┌" to "┘"
 	ld b, BANK(Frames)
 	call Function1064c3
-	ld hl, vTiles2 tile " " ; $7f
+	ld hl, vTiles2 + LEN_2BPP_TILE * " " ; $7f
 	ld de, TextboxSpaceGFX
 	ld c, 1
 	ld b, BANK(TextboxSpaceGFX)

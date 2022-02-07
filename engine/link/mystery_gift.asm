@@ -1432,9 +1432,9 @@ InitMysteryGiftLayout:
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld a, BANK(MysteryGiftGFX)
-	ld bc, $43 tiles
+	ld bc, $43 * LEN_2BPP_TILE
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $42
@@ -1725,14 +1725,14 @@ InitNameCardLayout:
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, CardTradeGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld a, BANK(CardTradeGFX)
-	ld bc, $40 tiles
+	ld bc, $40 * LEN_2BPP_TILE
 	call FarCopyBytes
 	ld hl, CardTradeSpriteGFX
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	ld a, BANK(CardTradeSpriteGFX)
-	ld bc, 8 tiles
+	ld bc, 8 * LEN_2BPP_TILE
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $3f

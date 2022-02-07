@@ -32,7 +32,7 @@ RotateUnownFrontpic:
 
 	ld hl, wGameboyPrinter2bppSource
 	ld de, sScratch
-	ld bc, 7 * 7 tiles
+	ld bc, 7 * 7 * LEN_2BPP_TILE
 	call CopyBytes
 	pop hl
 	ld de, sScratch
@@ -98,6 +98,6 @@ RotateUnownFrontpic:
 UnownPrinter_GBPrinterRectangle:
 for y, 7
 for x, 7 - 1, -1, -1
-	dw wGameboyPrinter2bppSource tile (x * 7 + y)
+	dw wGameboyPrinter2bppSource + LEN_2BPP_TILE * (x * 7 + y)
 endr
 endr

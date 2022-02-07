@@ -279,7 +279,7 @@ Function170d02:
 	ld a, $1
 	ldh [rVBK], a
 	ld de, PichuBorderMobileGFX
-	ld hl, vTiles0 tile $c1
+	ld hl, vTiles0 + LEN_2BPP_TILE * $c1
 	lb bc, BANK(PichuBorderMobileGFX), 24
 	call Get2bpp
 	xor a
@@ -651,11 +651,11 @@ String_171c73:
 Function171c87:
 	call DisableLCD
 	ld hl, AsciiFontGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, PasswordSlowpokeLZ
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Decompress
 	call EnableLCD
 	ld hl, PasswordTopTilemap
@@ -681,9 +681,9 @@ Function171ccd:
 	ldh [rSVBK], a
 	ld hl, MobilePasswordPalettes
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
-	ld hl, wOBPals1 palette 0 color 1
+	ld hl, wOBPals1 + PALETTE_SIZE * 0 + PAL_COLOR_SIZE * 1
 	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
 	ld a, HIGH(PALRGB_WHITE)
@@ -723,11 +723,11 @@ Function171cf0:
 Function171d2b:
 	call DisableLCD
 	ld hl, AsciiFontGFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, PasswordSlowpokeLZ
-	ld de, vTiles0 tile $00
+	ld de, vTiles0 + LEN_2BPP_TILE * $00
 	call Decompress
 	call EnableLCD
 	ld hl, ChooseMobileCenterTilemap
@@ -796,7 +796,7 @@ Function172e78:
 	call ByteFill
 	call DisableLCD
 	ld hl, Stadium2N64GFX
-	ld de, vTiles2 tile $00
+	ld de, vTiles2 + LEN_2BPP_TILE * $00
 	ld bc, $610
 	call CopyBytes
 	call EnableLCD
@@ -817,11 +817,11 @@ Function172eb9:
 	ldh [rSVBK], a
 	ld hl, Palette_172edf
 	ld de, wBGPals1
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	ld hl, Palette_172edf
 	ld de, wBGPals2
-	ld bc, 8 palettes
+	ld bc, 8 * PALETTE_SIZE
 	call CopyBytes
 	call SetPalettes
 	pop af

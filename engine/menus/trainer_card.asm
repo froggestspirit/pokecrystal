@@ -47,14 +47,14 @@ TrainerCard:
 	farcall GetCardPic
 
 	ld hl, CardRightCornerGFX
-	ld de, vTiles2 tile $1c
-	ld bc, 1 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $1c
+	ld bc, 1 * LEN_2BPP_TILE
 	ld a, BANK(CardRightCornerGFX)
 	call FarCopyBytes
 
 	ld hl, CardStatusGFX
-	ld de, vTiles2 tile $29
-	ld bc, 86 tiles
+	ld de, vTiles2 + LEN_2BPP_TILE * $29
+	ld bc, 86 * LEN_2BPP_TILE
 	ld a, BANK(CardStatusGFX)
 	call FarCopyBytes
 
@@ -108,7 +108,7 @@ TrainerCard_Page1_LoadGFX:
 	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, CardStatusGFX
-	ld hl, vTiles2 tile $29
+	ld hl, vTiles2 + LEN_2BPP_TILE * $29
 	lb bc, BANK(CardStatusGFX), 86
 	call Request2bpp
 	call TrainerCard_Page1_PrintDexCaught_GameTime
@@ -143,11 +143,11 @@ TrainerCard_Page2_LoadGFX:
 	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, LeaderGFX
-	ld hl, vTiles2 tile $29
+	ld hl, vTiles2 + LEN_2BPP_TILE * $29
 	lb bc, BANK(LeaderGFX), 86
 	call Request2bpp
 	ld de, BadgeGFX
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	lb bc, BANK(BadgeGFX), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings
@@ -191,11 +191,11 @@ TrainerCard_Page3_LoadGFX:
 	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, LeaderGFX2
-	ld hl, vTiles2 tile $29
+	ld hl, vTiles2 + LEN_2BPP_TILE * $29
 	lb bc, BANK(LeaderGFX2), 86
 	call Request2bpp
 	ld de, BadgeGFX2
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	lb bc, BANK(BadgeGFX2), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings

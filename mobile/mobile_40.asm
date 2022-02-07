@@ -6460,7 +6460,7 @@ Function102dd3:
 Function102dec:
 	ld hl, MobileTradeLightsPalettes
 	ld de, wOBPals1
-	ld bc, 4 palettes
+	ld bc, 4 * PALETTE_SIZE
 	ld a, $05
 	call FarCopyWRAM
 	farcall Function49742

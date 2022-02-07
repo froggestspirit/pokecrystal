@@ -551,7 +551,7 @@ AnimateEndOfExpBar:
 	ld de, SGBEndOfExpBarGFX
 
 .load
-	ld hl, vTiles0 tile $00
+	ld hl, vTiles0 + LEN_2BPP_TILE * $00
 	lb bc, BANK(EndOfExpBarGFX), 1
 	call Request2bpp
 	ld c, 8
