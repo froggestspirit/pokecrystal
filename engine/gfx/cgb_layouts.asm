@@ -604,9 +604,9 @@ _CGB_UnownPuzzle:
 	ld a, BANK(wOBPals1)
 	ldh [rSVBK], a
 	ld hl, wOBPals1
-	ld a, LOW(palred 31 + (1 << 5) * 0 + (1 << 10) * 0)
+	ld a, LOW((1 << 0) * 31 + (1 << 5) * 0 + (1 << 10) * 0)
 	ld [hli], a
-	ld a, HIGH(palred 31 + (1 << 5) * 0 + (1 << 10) * 0)
+	ld a, HIGH((1 << 0) * 31 + (1 << 5) * 0 + (1 << 10) * 0)
 	ld [hl], a
 	pop af
 	ldh [rSVBK], a

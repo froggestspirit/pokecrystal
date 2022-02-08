@@ -7,8 +7,8 @@ import re
 # replace without changing comments
 # Run on multiple files with something like
 # grep -lr pal | grep ".asm" | xargs -I {} ./replaceASM.py {}
-find = r"palblue"
-repl = r"(1 << 10) *"
+find = r"palred"
+repl = r"(1 << 0) *"
 
 comment = ";"
 
@@ -24,8 +24,8 @@ def main():
     for ln, line in enumerate(asmFile):
         if line:
             line = line.split(comment)
-            reline = re.sub(f" {find}([, \(\)])", f" {repl}\\1", line[0])
-            reline = re.sub(f" {find}$", f" {repl}", reline)
+            reline = re.sub(f"([, \(\)]){find}([, \(\)])", f"\\1{repl}\\2", line[0])
+            reline = re.sub(f"([, \(\)]){find}$", f"\\1{repl}", reline)
             if reline != line[0]:
                 if args.test:
                     print(reline)

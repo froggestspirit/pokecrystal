@@ -214,13 +214,13 @@ DebugColor_InitPalettes:
 	dec c
 	jr nz, .ob_loop
 
-	ld a, LOW(palred 20 + (1 << 5) * 20 + (1 << 10) * 20)
+	ld a, LOW((1 << 0) * 20 + (1 << 5) * 20 + (1 << 10) * 20)
 	ld [wDebugLightColor + 0], a
-	ld a, HIGH(palred 20 + (1 << 5) * 20 + (1 << 10) * 20)
+	ld a, HIGH((1 << 0) * 20 + (1 << 5) * 20 + (1 << 10) * 20)
 	ld [wDebugLightColor + 1], a
-	ld a, LOW(palred 10 + (1 << 5) * 10 + (1 << 10) * 10)
+	ld a, LOW((1 << 0) * 10 + (1 << 5) * 10 + (1 << 10) * 10)
 	ld [wDebugDarkColor + 0], a
-	ld a, HIGH(palred 10 + (1 << 5) * 10 + (1 << 10) * 10)
+	ld a, HIGH((1 << 0) * 10 + (1 << 5) * 10 + (1 << 10) * 10)
 	ld [wDebugDarkColor + 1], a
 
 	pop af
