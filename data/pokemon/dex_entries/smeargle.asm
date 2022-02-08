@@ -1,7 +1,7 @@
 	db "PAINTER@" ; species name
 	dw 311, 1280 ; height, weight
 
-	db   "The + PAL_COLOR_SIZE * of the"
+	db   "The color of the"
 	next "mysterious fluid"
 	next "secreted from its"
 
